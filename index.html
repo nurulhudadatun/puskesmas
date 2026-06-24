@@ -3,249 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Data ILP - Puskesmas Wanareja 2</title>
+    <title>PKP Digital - Puskesmas Wanareja 2</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-50 font-sans min-h-screen flex flex-col">
+<body class="bg-slate-50 min-h-screen">
 
-    <header class="bg-emerald-600 text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="bg-white p-2 rounded-xl text-emerald-600 font-bold text-xl w-11 h-11 flex items-center justify-center shadow-md">
-                    <i class="fa-solid fa-hospital text-emerald-600"></i>
-                </div>
-                <div>
-                    <h1 class="font-extrabold text-xl tracking-wide leading-tight">%start_span%[span_3]PUSKESMAS WANAREJA 2%end_span%</h1>
-                    <p class="text-xs text-emerald-100 font-medium">Sistem Integrasi Pelayanan Kesehatan Primer (ILP)</p>
-                </div>
-            </div>
-            <div class="flex items-center space-x-2 bg-emerald-700 px-4 py-2 rounded-xl border border-emerald-500/30 text-sm">
-                <i class="fa-solid fa-user-shield text-emerald-300"></i>
-                <span class="font-medium text-emerald-50 text-xs md:text-sm">Mode: Simulasi Input</span>
-            </div>
-        </div>
-    </header>
+    <div class="max-w-3xl mx-auto p-4 md:p-6">
+        <header class="mb-8 text-center">
+            <h1 class="text-2xl font-extrabold text-emerald-800">SISTEM PKP DIGITAL</h1>
+            <p class="text-slate-600 text-sm">Puskesmas Wanareja 2 - Tahun 2026</p>
+        </header>
 
-    <main class="container mx-auto px-4 py-8 flex-grow">
-        
-        <div id="halaman-dasbor" class="block space-y-6">
-            <div class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                    <h2 class="text-2xl font-bold">Selamat Datang di Portal Data ILP</h2>
-                    <p class="text-emerald-100 text-sm mt-1">Sistem informasi pemantauan capaian indikator mutu kesehatan Klaster 1 hingga Klaster 5.</p>
-                </div>
-                <div class="bg-white/10 px-4 py-2 rounded-xl backdrop-blur-sm text-xs border border-white/10">
-                    <i class="fa-regular fa-calendar-days mr-2"></i> Penyimpanan Online Aktif
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
-                    <div class="p-5 border-b border-slate-50 bg-blue-50/50">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-md">Klaster 1</span>
-                            <i class="fa-solid fa-sliders text-blue-500"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-lg mt-3">Manajemen Puskesmas</h4>
-                    </div>
-                    <div class="p-5 space-y-3.5 text-sm">
-                        <div class="flex justify-between"><span class="text-slate-500">Jumlah SDM:</span> <span id="val-sdm" class="font-semibold text-slate-700">42 Personel</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Realisasi Keuangan (BOK):</span> <span id="val-bok" class="font-semibold text-emerald-600">58.4%</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Nilai Mutu (IKM):</span> <span id="val-ikm" class="font-semibold text-slate-700">92.5</span></div>
-                        <button type="button" onclick="pindahHalaman('klaster1')" class="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data</button>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
-                    <div class="p-5 border-b border-slate-50 bg-pink-50/50">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-pink-700 bg-pink-100 px-2.5 py-1 rounded-md">Klaster 2</span>
-                            <i class="fa-solid fa-baby text-pink-500"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-lg mt-3">Ibu dan Anak</h4>
-                    </div>
-                    <div class="p-5 space-y-3.5 text-sm">
-                        <div class="flex justify-between"><span class="text-slate-500">Kunjungan K4 Bumil:</span> <span id="val-k4" class="font-semibold text-slate-700">85% Target</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Balita Imunisasi:</span> <span id="val-imunisasi" class="font-semibold text-slate-700">142 Anak</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Kasus Stunting:</span> <span id="val-stunting" class="font-semibold text-rose-600">8 Anak</span></div>
-                        <button type="button" onclick="pindahHalaman('klaster2')" class="w-full mt-2 bg-pink-600 hover:bg-pink-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data</button>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
-                    <div class="p-5 border-b border-slate-50 bg-purple-50/50">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-purple-700 bg-purple-100 px-2.5 py-1 rounded-md">Klaster 3</span>
-                            <i class="fa-solid fa-user-group text-purple-500"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-lg mt-3">Usia Dewasa & Lansia</h4>
-                    </div>
-                    <div class="p-5 space-y-3.5 text-sm">
-                        <div class="flex justify-between"><span class="text-slate-500">Skrining Produktif:</span> <span id="val-skrining" class="font-semibold text-slate-700">640 Warga</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Hipertensi Terkontrol:</span> <span id="val-hipertensi" class="font-semibold text-emerald-600">72%</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Posyandu Lansia:</span> <span id="val-lansia" class="font-semibold text-slate-700">185 Lansia</span></div>
-                        <button type="button" onclick="pindahHalaman('klaster3')" class="w-full mt-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data</button>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
-                    <div class="p-5 border-b border-slate-50 bg-red-50/50">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-red-700 bg-red-100 px-2.5 py-1 rounded-md">Klaster 4</span>
-                            <i class="fa-solid fa-biohazard text-red-500"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-lg mt-3">Penanggulangan Penyakit</h4>
-                    </div>
-                    <div class="p-5 space-y-3.5 text-sm">
-                        <div class="flex justify-between"><span class="text-slate-500">Kasus TBC Baru:</span> <span id="val-tbc" class="font-semibold text-amber-600">11 Kasus</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Kesembuhan TB:</span> <span id="val-sembuh" class="font-semibold text-emerald-600">100%</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Bebas Jentik (ABJ):</span> <span id="val-abj" class="font-semibold text-slate-700">93.2%</span></div>
-                        <button type="button" onclick="pindahHalaman('klaster4')" class="w-full mt-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data</button>
-                    </div>
-                </div>
-
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
-                    <div class="p-5 border-b border-slate-50 bg-amber-50/50">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-md">Klaster 5</span>
-                            <i class="fa-solid fa-kit-medical text-amber-500"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-lg mt-3">Lintas Klaster</h4>
-                    </div>
-                    <div class="p-5 space-y-3.5 text-sm">
-                        <div class="flex justify-between"><span class="text-slate-500">Pasien UGD:</span> <span id="val-ugd" class="font-semibold text-slate-700">84 Pasien</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Stok Obat Utama:</span> <span id="val-obat" class="font-semibold text-emerald-600">98%</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Sampel Lab:</span> <span id="val-lab" class="font-semibold text-slate-700">240 Sampel</span></div>
-                        <button type="button" onclick="pindahHalaman('klaster5')" class="w-full mt-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data</button>
-                    </div>
-                </div>
-            </div>
+        <!-- Tab Navigasi -->
+        <div class="flex space-x-1 bg-slate-200 p-1 rounded-lg mb-6">
+            <button onclick="bukaTab('klaster2')" class="flex-1 py-2 text-xs font-bold bg-white rounded-md shadow">Klaster 2</button>
+            <button onclick="bukaTab('klaster3')" class="flex-1 py-2 text-xs font-bold bg-white rounded-md shadow">Klaster 3</button>
+            <button onclick="bukaTab('klaster4')" class="flex-1 py-2 text-xs font-bold bg-white rounded-md shadow">Klaster 4</button>
         </div>
 
-        <div id="halaman-input-klaster1" class="hidden">
-            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
-                <div class="bg-blue-600 p-6 text-white"><h3 class="text-xl font-bold">Input Data Klaster 1 - Manajemen</h3></div>
-                <div class="p-6 space-y-5">
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Total SDM (Personel)</label><input type="number" id="input-sdm" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Realisasi BOK (%)</label><input type="number" id="input-bok" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Nilai Mutu IKM</label><input type="text" id="input-ikm" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div class="flex space-x-3"><button type="button" onclick="kembaliKeDasbor()" class="w-1/3 bg-slate-100 py-2 rounded-xl text-sm border">Kembali</button><button type="button" onclick="simpanData('klaster1')" class="w-2/3 bg-blue-600 text-white py-2 rounded-xl text-sm font-semibold">Simpan</button></div>
-                </div>
+        <!-- Kontainer Form -->
+        <form id="form-container" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <h2 id="title-klaster" class="text-lg font-bold text-emerald-700 mb-4 border-b pb-2">Klaster 2 (Ibu & Anak)</h2>
+            <div id="list-indikator" class="space-y-4">
+                <!-- Indikator akan muncul otomatis di sini -->
             </div>
-        </div>
-
-        <div id="halaman-input-klaster2" class="hidden">
-            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
-                <div class="bg-pink-600 p-6 text-white"><h3 class="text-xl font-bold">Input Data Klaster 2 - Ibu & Anak</h3></div>
-                <div class="p-6 space-y-5">
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Kunjungan K4 Bumil (%)</label><input type="number" id="input-k4" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Balita Imunisasi (Anak)</label><input type="number" id="input-imunisasi" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Kasus Stunting (Anak)</label><input type="number" id="input-stunting" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div class="flex space-x-3"><button type="button" onclick="kembaliKeDasbor()" class="w-1/3 bg-slate-100 py-2 rounded-xl text-sm border">Kembali</button><button type="button" onclick="simpanData('klaster2')" class="w-2/3 bg-pink-600 text-white py-2 rounded-xl text-sm font-semibold">Simpan</button></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="halaman-input-klaster3" class="hidden">
-            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
-                <div class="bg-purple-600 p-6 text-white"><h3 class="text-xl font-bold">Input Data Klaster 3 - Dewasa & Lansia</h3></div>
-                <div class="p-6 space-y-5">
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Skrining Produktif (Warga)</label><input type="number" id="input-skrining" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Hipertensi Terkontrol (%)</label><input type="number" id="input-hipertensi" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Posyandu Lansia (Orang)</label><input type="number" id="input-lansia" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div class="flex space-x-3"><button type="button" onclick="kembaliKeDasbor()" class="w-1/3 bg-slate-100 py-2 rounded-xl text-sm border">Kembali</button><button type="button" onclick="simpanData('klaster3')" class="w-2/3 bg-purple-600 text-white py-2 rounded-xl text-sm font-semibold">Simpan</button></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="halaman-input-klaster4" class="hidden">
-            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
-                <div class="bg-red-600 p-6 text-white"><h3 class="text-xl font-bold">Input Data Klaster 4 - Penyakit Menular</h3></div>
-                <div class="p-6 space-y-5">
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Kasus TBC Baru</label><input type="number" id="input-tbc" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Kesembuhan TB (%)</label><input type="number" id="input-sembuh" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Bebas Jentik ABJ (%)</label><input type="number" id="input-abj" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div class="flex space-x-3"><button type="button" onclick="kembaliKeDasbor()" class="w-1/3 bg-slate-100 py-2 rounded-xl text-sm border">Kembali</button><button type="button" onclick="simpanData('klaster4')" class="w-2/3 bg-red-600 text-white py-2 rounded-xl text-sm font-semibold">Simpan</button></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="halaman-input-klaster5" class="hidden">
-            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
-                <div class="bg-amber-600 p-6 text-white"><h3 class="text-xl font-bold">Input Data Klaster 5 - Lintas Klaster</h3></div>
-                <div class="p-6 space-y-5">
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Pasien UGD (Orang)</label><input type="number" id="input-ugd" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Stok Obat Utama (%)</label><input type="number" id="input-obat" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div><label class="block text-sm font-semibold text-slate-700 mb-1">Sampel Lab (Jumlah)</label><input type="number" id="input-lab" class="w-full px-4 py-2 rounded-xl border border-slate-300"></div>
-                    <div class="flex space-x-3"><button type="button" onclick="kembaliKeDasbor()" class="w-1/3 bg-slate-100 py-2 rounded-xl text-sm border">Kembali</button><button type="button" onclick="simpanData('klaster5')" class="w-2/3 bg-amber-600 text-white py-2 rounded-xl text-sm font-semibold">Simpan</button></div>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <footer class="bg-slate-900 text-slate-500 text-center py-4 text-xs border-t border-slate-800">
-        &copy; 2026 Puskesmas Wanareja 2.
-    </footer>
+            <button type="submit" class="mt-6 w-full bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 transition">Simpan Data Inputan</button>
+        </form>
+    </div>
 
     <script>
-        const formatData = {
-            sdm: ' Personel', bok: '%', ikm: '', k4: '% Target', imunisasi: ' Anak', 
-            stunting: ' Anak', skrining: ' Warga', hipertensi: '%', lansia: ' Lansia', 
-            tbc: ' Kasus', sembuh: '%', abj: '%', ugd: ' Pasien', obat: '%', lab: ' Sampel'
+        const dataPKP = {
+            klaster2: [
+                "Cakupan ANC TM 1 USG", "Cakupan K4", "Cakupan ANC TM III USG", 
+                "Cakupan K6", "Persentase Ibu hamil dengan Anemia", 
+                "Ibu hamil mendapatkan 90 tablet tambah darah", 
+                "Ibu bersalin mendapatkan pelayanan standar (PF)", 
+                "Ibu Nifas pelayanan standar (KF4)", "Status imunisasi T2+ Ibu Hamil", 
+                "Ibu Hamil KEK mendapat PMT", "Ibu hamil Anemia dirujuk ke FKRTL"
+            ],
+            klaster3: [
+                "Skrining kesehatan usia produktif", "Skrining kesehatan usia sekolah", 
+                "Pelayanan kesehatan usia dewasa", "Skrining Lansia", 
+                "Pelayanan kesehatan Lansia", "Edukasi kesehatan jiwa"
+            ],
+            klaster4: [
+                "Terduga TBC diperiksa standar", "Pengobatan TBC", 
+                "Pelayanan kesehatan HIV", "Pelayanan kesehatan IMS", 
+                "Penemuan kasus DBD", "Angka Bebas Jentik"
+            ]
         };
-        const defaultNilai = {sdm:42, bok:58.4, ikm:92.5, k4:85, imunisasi:142, stunting:8, skrining:640, hipertensi:72, lansia:185, tbc:11, sembuh:100, abj:93.2, ugd:84, obat:98, lab:240};
 
-        function perbaruiTampilanDashboard() {
-            Object.keys(defaultNilai).forEach(key => {
-                let nilaiSkg = localStorage.getItem('ilp_' + key) || defaultNilai[key];
-                let elemenDasbor = document.getElementById('val-' + key);
-                let elemenInput = document.getElementById('input-' + key);
-                
-                if(elemenDasbor) elemenDasbor.innerText = nilaiSkg + formatData[key];
-                if(elemenInput) elemenInput.value = nilaiSkg;
+        function bukaTab(k) {
+            const list = document.getElementById('list-indikator');
+            const title = document.getElementById('title-klaster');
+            list.innerHTML = '';
+            title.innerText = k.toUpperCase().replace('KLASTER', 'KLASTER ');
+            
+            dataPKP[k].forEach((ind, index) => {
+                list.innerHTML += `
+                    <div class="flex flex-col">
+                        <label class="text-xs font-semibold text-slate-500 mb-1">${ind}</label>
+                        <input type="number" placeholder="0" class="w-full border-b-2 border-emerald-200 focus:border-emerald-500 outline-none p-1">
+                    </div>
+                `;
             });
         }
 
-        function pindahHalaman(klasterID) {
-            document.getElementById('halaman-dasbor').style.display = 'none';
-            ['klaster1', 'klaster2', 'klaster3', 'klaster4', 'klaster5'].forEach(k => {
-                document.getElementById('halaman-input-' + k).style.display = 'none';
-            });
-            document.getElementById('halaman-input-' + klasterID).style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        function kembaliKeDasbor() {
-            ['klaster1', 'klaster2', 'klaster3', 'klaster4', 'klaster5'].forEach(k => {
-                document.getElementById('halaman-input-' + k).style.display = 'none';
-            });
-            document.getElementById('halaman-dasbor').style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        function simpanData(klasterName) {
-            let fields = [];
-            if(klasterName === 'klaster1') fields = ['sdm', 'bok', 'ikm'];
-            if(klasterName === 'klaster2') fields = ['k4', 'imunisasi', 'stunting'];
-            if(klasterName === 'klaster3') fields = ['skrining', 'hipertensi', 'lansia'];
-            if(klasterName === 'klaster4') fields = ['tbc', 'sembuh', 'abj'];
-            if(klasterName === 'klaster5') fields = ['ugd', 'obat', 'lab'];
-
-            fields.forEach(f => {
-                let inputVal = document.getElementById('input-' + f).value;
-                localStorage.setItem('ilp_' + f, inputVal);
-            });
-
-            alert('Data Berhasil Disimpan!');
-            perbaruiTampilanDashboard();
-            kembaliKeDasbor();
-        }
-
-        window.onload = function() {
-            perbaruiTampilanDashboard();
-        };
+        // Jalankan Klaster 2 saat pertama kali dibuka
+        window.onload = () => bukaTab('klaster2');
     </script>
 </body>
 </html>
