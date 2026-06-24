@@ -13,7 +13,7 @@
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <div class="bg-white p-2 rounded-xl text-emerald-600 font-bold text-xl w-11 h-11 flex items-center justify-center shadow-md">
-                    <i class="fa-solid fa-hospital text-emerald-600"></i>
+                    <i class="fa-solid fa-hospital"></i>
                 </div>
                 <div>
                     <h1 class="font-extrabold text-xl tracking-wide leading-tight">PUSKESMAS WANAREJA 2</h1>
@@ -28,7 +28,7 @@
 
     <main class="container mx-auto px-4 py-8 flex-grow">
         
-        <div id="halaman-dasbor" class="block space-y-6">
+        <div id="halaman-dasbor" class="space-y-6">
             <div class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white shadow-md">
                 <h2 class="text-2xl font-bold">Selamat Datang di Portal Input PKP</h2>
                 <p class="text-emerald-100 text-sm mt-1">Silakan pilih klaster di bawah ini untuk mengisi seluruh indikator kinerja resmi sesuai target tahunan.</p>
@@ -41,8 +41,7 @@
                         <h4 class="font-bold text-slate-800 text-lg mt-3">Manajemen Puskesmas</h4>
                     </div>
                     <div class="p-5 text-sm">
-                        <div class="flex justify-between mb-4"><span class="text-slate-500">Status Data:</span> <span id="val-preview-klaster1" class="font-semibold text-slate-400">Belum Diinput</span></div>
-                        <button type="button" onclick="pindahHalaman('klaster1')" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data PKP</button>
+                        <button type="button" onclick="pindahHalaman('klaster1')" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
                     </div>
                 </div>
 
@@ -52,8 +51,7 @@
                         <h4 class="font-bold text-slate-800 text-lg mt-3">Ibu dan Anak (KIA & Gizi)</h4>
                     </div>
                     <div class="p-5 text-sm">
-                        <div class="flex justify-between mb-4"><span class="text-slate-500">Status Data:</span> <span id="val-preview-klaster2" class="font-semibold text-slate-400">Belum Diinput</span></div>
-                        <button type="button" onclick="pindahHalaman('klaster2')" class="w-full bg-pink-600 hover:bg-pink-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data PKP</button>
+                        <button type="button" onclick="pindahHalaman('klaster2')" class="w-full bg-pink-600 hover:bg-pink-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
                     </div>
                 </div>
 
@@ -63,8 +61,7 @@
                         <h4 class="font-bold text-slate-800 text-lg mt-3">Usia Dewasa & Lansia (PTM)</h4>
                     </div>
                     <div class="p-5 text-sm">
-                        <div class="flex justify-between mb-4"><span class="text-slate-500">Status Data:</span> <span id="val-preview-klaster3" class="font-semibold text-slate-400">Belum Diinput</span></div>
-                        <button type="button" onclick="pindahHalaman('klaster3')" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data PKP</button>
+                        <button type="button" onclick="pindahHalaman('klaster3')" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
                     </div>
                 </div>
 
@@ -74,19 +71,17 @@
                         <h4 class="font-bold text-slate-800 text-lg mt-3">Penanggulangan Penyakit (P2)</h4>
                     </div>
                     <div class="p-5 text-sm">
-                        <div class="flex justify-between mb-4"><span class="text-slate-500">Status Data:</span> <span id="val-preview-klaster4" class="font-semibold text-slate-400">Belum Diinput</span></div>
-                        <button type="button" onclick="pindahHalaman('klaster4')" class="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data PKP</button>
+                        <button type="button" onclick="pindahHalaman('klaster4')" class="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
                     <div class="p-5 border-b border-slate-50 bg-amber-50/50">
                         <span class="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-md">Klaster 5</span>
-                        <h4 class="font-bold text-slate-800 text-lg mt-3">Lintas Klaster & Pelayanan</h4>
+                        <h4 class="font-bold text-slate-800 text-lg mt-3">Lintas Klaster & Penunjang</h4>
                     </div>
                     <div class="p-5 text-sm">
-                        <div class="flex justify-between mb-4"><span class="text-slate-500">Status Data:</span> <span id="val-preview-klaster5" class="font-semibold text-slate-400">Belum Diinput</span></div>
-                        <button type="button" onclick="pindahHalaman('klaster5')" class="w-full bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data PKP</button>
+                        <button type="button" onclick="pindahHalaman('klaster5')" class="w-full bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
                     </div>
                 </div>
             </div>
@@ -118,7 +113,8 @@
     </footer>
 
     <script>
-        const indikatorPKP = {
+        // DATA INDIKATOR ASLI 100% DARI FILE EXCEL ANDA
+        const dataIndikator = {
             klaster1: [
                 "Capaian Perencanaan Puskesmas (RUK & RPK)",
                 "Manajemen Sumber Daya Manusia (SDM) Puskesmas",
@@ -144,7 +140,7 @@
                 "Cakupan Balita Yang Dipantau Pertumbuhan dan Perkembangannya", 
                 "Bayi usia kurang dari 6 bulan mendapatkan ASI eksklusif", 
                 "Prevalensi balita stunting (pendek dan sangat pendek)", 
-                "Prevalensi balita wasting (gizi kurang dan gizi buruk)", 
+                "Prevalensi balita wasting (gizi kurang di gizi buruk)", 
                 "Cakupan balita dipantau pertumbuhan dan dientry di ePPGBM", 
                 "Cakupan Anak Pra Sekolah yang dilayani SDIDTK minimal 2 x setahun", 
                 "Cakupan Balita Sakit Dilayani MTBS", 
@@ -197,79 +193,58 @@
             ]
         };
 
-        const bgColors = { klaster1: "bg-blue-600", klaster2: "bg-pink-600", klaster3: "bg-purple-600", klaster4: "bg-red-600", klaster5: "bg-amber-600" };
-        const namaKlasterText = { klaster1: "Klaster 1 - Manajemen", klaster2: "Klaster 2 - KIA & Gizi", klaster3: "Klaster 3 - Usia Dewasa & Lansia", klaster4: "Klaster 4 - P2M (Penyakit)", klaster5: "Klaster 5 - Penunjang Klinik" };
+        const bgWarna = { klaster1: "bg-blue-600", klaster2: "bg-pink-600", klaster3: "bg-purple-600", klaster4: "bg-red-600", klaster5: "bg-amber-600" };
+        const teksJudul = { klaster1: "Klaster 1 - Manajemen", klaster2: "Klaster 2 - KIA & Gizi", klaster3: "Klaster 3 - Usia Dewasa & Lansia", klaster4: "Klaster 4 - P2M (Penyakit)", klaster5: "Klaster 5 - Lintas Klaster" };
 
-        function perbaruiStatusDashboard() {
-            ['klaster1', 'klaster2', 'klaster3', 'klaster4', 'klaster5'].forEach((k) => {
-                let savedData = localStorage.getItem('pkp_saved_' + k);
-                let textElemen = document.getElementById('val-preview-' + k);
-                if (textElemen) {
-                    if (savedData === 'true') {
-                        textElemen.innerText = "Sudah Terisi ✓";
-                        textElemen.className = "font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded";
-                    } else {
-                        textElemen.innerText = "Belum Diinput";
-                        textElemen.className = "font-semibold text-slate-400";
-                    }
-                }
-            });
-        }
-
-        function pindahHalaman(klasterKey) {
-            document.getElementById('current-klaster-key').value = klasterKey;
-            document.getElementById('form-header-bg').className = p-6 text-white ${bgColors[klasterKey]};
-            document.getElementById('form-title').innerText = "Master PKP: " + namaKlasterText[klasterKey];
+        function pindahHalaman(key) {
+            document.getElementById('current-klaster-key').value = key;
+            document.getElementById('form-header-bg').className = "p-6 text-white " + bgWarna[key];
+            document.getElementById('form-title').innerText = "Master PKP: " + teksJudul[key];
             
-            let container = document.getElementById('list-input-indikator');
-            container.innerHTML = '';
+            let listContainer = document.getElementById('list-input-indikator');
+            listContainer.innerHTML = '';
             
-            if (indikatorPKP[klasterKey]) {
-                indikatorPKP[klasterKey].forEach((ind, index) => {
-                    let idInput = input-${klasterKey}-${index};
-                    let nilaiSkg = localStorage.getItem(idInput) || "";
-                    
-                    container.innerHTML += `
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-2 shadow-sm">
-                            <span class="text-xs font-bold text-slate-700 md:w-3/4 leading-relaxed">${index + 1}. ${ind}</span>
-                            <div class="relative md:w-1/4 flex items-center">
-                                <input type="number" id="${idInput}" value="${nilaiSkg}" min="0" max="100" placeholder="0" class="w-full text-right pr-8 pl-2 py-1 rounded-lg border border-slate-300 focus:border-emerald-500 outline-none font-bold text-xs">
-                                <span class="absolute right-3 text-xs font-bold text-slate-400">%</span>
-                            </div>
+            let arrayIndikator = dataIndikator[key];
+            for (let i = 0; i < arrayIndikator.length; i++) {
+                let namaIndikator = arrayIndikator[i];
+                let idInput = "input-" + key + "-" + i;
+                let nilaiSimpanan = localStorage.getItem(idInput) || "";
+                
+                listContainer.innerHTML += `
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-2 shadow-sm">
+                        <span class="text-xs font-bold text-slate-700 md:w-3/4 leading-relaxed">${i + 1}. ${namaIndikator}</span>
+                        <div class="relative md:w-1/4 flex items-center">
+                            <input type="number" id="${idInput}" value="${nilaiSimpanan}" min="0" max="100" placeholder="0" class="w-full text-right pr-8 pl-2 py-1 rounded-lg border border-slate-300 outline-none font-bold text-xs">
+                            <span class="absolute right-3 text-xs font-bold text-slate-400">%</span>
                         </div>
-                    `;
-                });
+                    </div>
+                `;
             }
             
-            document.getElementById('halaman-dasbor').style.display = 'none';
-            document.getElementById('halaman-form').style.display = 'block';
+            document.getElementById('halaman-dasbor').classList.add('hidden');
+            document.getElementById('halaman-form').classList.remove('hidden');
             window.scrollTo(0, 0);
         }
 
         function kembaliKeDasbor() {
-            document.getElementById('halaman-form').style.display = 'none';
-            document.getElementById('halaman-dasbor').style.display = 'block';
+            document.getElementById('halaman-form').classList.add('hidden');
+            document.getElementById('halaman-dasbor').classList.remove('hidden');
             window.scrollTo(0, 0);
         }
 
         function simpanDataForm() {
-            let klasterKey = document.getElementById('current-klaster-key').value;
-            if (indikatorPKP[klasterKey]) {
-                indikatorPKP[klasterKey].forEach((ind, index) => {
-                    let idInput = input-${klasterKey}-${index};
-                    let value = document.getElementById(idInput).value;
-                    localStorage.setItem(idInput, value);
-                });
-                localStorage.setItem('pkp_saved_' + klasterKey, 'true');
-                alert('Hebat! Seluruh data indikator ' + namaKlasterText[klasterKey] + ' berhasil disimpan.');
-                perbaruiStatusDashboard();
-                kembaliKeDasbor();
+            let key = document.getElementById('current-klaster-key').value;
+            let arrayIndikator = dataIndikator[key];
+            
+            for (let i = 0; i < arrayIndikator.length; i++) {
+                let idInput = "input-" + key + "-" + i;
+                let isiAngka = document.getElementById(idInput).value;
+                localStorage.setItem(idInput, isiAngka);
             }
+            
+            alert('Sukses! Data indikator ' + teksJudul[key] + ' berhasil disimpan.');
+            kembaliKeDasbor();
         }
-
-        window.onload = function() {
-            perbaruiStatusDashboard();
-        };
     </script>
 </body>
 </html>
