@@ -3,127 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Data ILP - Puskesmas Wanareja 2</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Simulasi Dasbor Puskesmas Wanareja 2</title>
+    <style>
+        * { box-sizing: border-box; font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        body { background-color: #f4f6f9; color: #333; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { background-color: #0284c7; color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: center; position: relative; }
+        .back-btn { position: absolute; left: 20px; top: 25px; background: white; color: #0284c7; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-top: 4px solid #0284c7; }
+        .card h3 { font-size: 0.9rem; color: #666; margin-bottom: 5px; }
+        .card .value { font-size: 1.6rem; font-weight: bold; color: #111; }
+        .card .sub { font-size: 0.8rem; color: #888; margin-top: 5px; }
+        .klaster-section { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .klaster-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 15px; }
+        .klaster-title { font-size: 1.2rem; font-weight: bold; color: #0284c7; }
+        .btn-edit { background-color: #0ea5e9; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.85rem; }
+        .btn-edit:hover { background-color: #0284c7; }
+        .data-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+        .data-item { background: #f8fafc; padding: 10px; border-radius: 6px; border-left: 3px solid #cbd5e1; }
+        .data-label { font-size: 0.8rem; color: #64748b; }
+        .data-val { font-size: 1.1rem; font-weight: bold; color: #334155; }
+        
+        /* Form Style */
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 0.9rem; font-weight: bold; margin-bottom: 5px; color: #475569; }
+        input[type="text"], input[type="number"] { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 1rem; }
+        .btn-submit { background-color: #10b981; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 1rem; }
+        .btn-submit:hover { background-color: #059669; }
+        
+        .page { display: none; }
+        .active-page { display: block; }
+    </style>
 </head>
-<body class="bg-slate-50 font-sans min-h-screen flex flex-col">
+<body>
 
-    <header class="bg-emerald-600 text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="bg-white p-2 rounded-xl text-emerald-600 font-bold text-xl w-11 h-11 flex items-center justify-center shadow-md">
-                    <i class="fa-solid fa-hospital text-emerald-600"></i>
-                </div>
-                <div>
-                    <h1 class="font-extrabold text-xl tracking-wide leading-tight">PUSKESMAS WANAREJA 2</h1>
-                    <p class="text-xs text-emerald-100 font-medium">Sistem Integrasi Pelayanan Kesehatan Primer (ILP)</p>
-                </div>
+<div class="container">
+    <!-- HALAMAN DASHBOARD UTAMA -->
+    <div id="page-dashboard" class="page active-page">
+        <header>
+            <h1>DASHBOARD SIMULASI PUSKESMAS WANAREJA 2</h1>
+            <p>Sistem Informasi Integrasi Layanan Primer (ILP) & Capaian Kinerja</p>
+        </header>
+
+        <!-- Ringkasan Utama -->
+        <div class="grid">
+            <div class="card">
+                <h3>Total SDM Real-time</h3>
+                <div class="value" id="dash-sdm">42</div>
+                <div class="sub">Personel Aktif</div>
             </div>
-            <div class="flex items-center space-x-2 bg-emerald-700 px-4 py-2 rounded-xl border border-emerald-500/30 text-sm">
-                <i class="fa-solid fa-user-shield text-emerald-300"></i>
-                <span class="font-medium text-emerald-50 text-xs md:text-sm">Mode: Kepala Puskesmas</span>
+            <div class="card">
+                <h3>Indeks Kepuasan (IKM)</h3>
+                <div class="value" id="dash-ikm">92.5</div>
+                <div class="sub">Skor Skala 100</div>
+            </div>
+            <div class="card">
+                <h3>Kunjungan Puskesmas</h3>
+                <div class="value" id="dash-kunjungan">140</div>
+                <div class="sub">Pasien/Minggu</div>
+            </div>
+            <div class="card">
+                <h3>Realisasi Anggaran BOK</h3>
+                <div class="value" id="dash-bok">78%</div>
+                <div class="sub">Tahun Berjalan</div>
             </div>
         </div>
-    </header>
 
-    <div class="bg-white border-b border-slate-200 shadow-sm">
-        <div class="container mx-auto px-4 flex space-x-2 overflow-x-auto">
-            <button onclick="bukaHalaman('dasbor')" id="btn-dasbor" class="py-3 px-4 border-b-2 border-emerald-600 text-emerald-600 font-bold text-sm flex items-center space-x-2 whitespace-nowrap transition">
-                <i class="fa-solid fa-chart-pie"></i><span>Dashboard Utama</span>
-            </button>
-            <button onclick="bukaHalaman('input-klaster1')" id="btn-input1" class="py-3 px-4 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm flex items-center space-x-2 whitespace-nowrap transition">
-                <i class="fa-solid fa-sliders"></i><span>Input Klaster 1</span>
-            </button>
-            <button onclick="bukaHalaman('input-klaster2')" id="btn-input2" class="py-3 px-4 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm flex items-center space-x-2 whitespace-nowrap transition">
-                <i class="fa-solid fa-baby"></i><span>Input Klaster 2</span>
-            </button>
-            <button onclick="bukaHalaman('input-klaster3')" id="btn-input3" class="py-3 px-4 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm flex items-center space-x-2 whitespace-nowrap transition">
-                <i class="fa-solid fa-user-group"></i><span>Input Klaster 3</span>
-            </button>
-            <button onclick="bukaHalaman('input-klaster4')" id="btn-input4" class="py-3 px-4 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm flex items-center space-x-2 whitespace-nowrap transition">
-                <i class="fa-solid fa-biohazard"></i><span>Input Klaster 4</span>
-            </button>
-            <button onclick="bukaHalaman('input-klaster5')" id="btn-input5" class="py-3 px-4 border-b-2 border-transparent text-slate-500 hover:text-slate-700 font-medium text-sm flex items-center space-x-2 whitespace-nowrap transition">
-                <i class="fa-solid fa-kit-medical"></i><span>Input Klaster 5</span>
-            </button>
+        <!-- KLASTER 1 -->
+        <div class="klaster-section">
+            <div class="klaster-header">
+                <div class="klaster-title">Klaster 1: Manajemen Puskesmas</div>
+                <button class="btn-edit" onclick="bukaForm('klaster1')">Isi / Edit Data</button>
+            </div>
+            <div class="data-list">
+                <div class="data-item"><div class="data-label">Jumlah SDM Puskesmas</div><div class="data-val" id="val-sdm">42 Orang</div></div>
+                <div class="data-item"><div class="data-label">Indeks Kepuasan Masyarakat</div><div class="data-val" id="val-ikm">92.5</div></div>
+                <div class="data-item"><div class="data-label">Nilai RUK / RPK</div><div class="data-val" id="val-ruk">Sesuai Target</div></div>
+            </div>
+        </div>
+
+        <!-- KLASTER 2 -->
+        <div class="klaster-section">
+            <div class="klaster-header">
+                <div class="klaster-title">Klaster 2: Ibu dan Anak</div>
+                <button class="btn-edit" onclick="bukaForm('klaster2')">Isi / Edit Data</button>
+            </div>
+            <div class="data-list">
+                <div class="data-item"><div class="data-label">Capaian K4 Ibu Hamil</div><div class="data-val" id="val-k4">85 %</div></div>
+                <div class="data-item"><div class="data-label">Jumlah Kasus Stunting</div><div class="data-val" id="val-stunting">8 Anak</div></div>
+                <div class="data-item"><div class="data-label">Imunisasi Dasar Lengkap</div><div class="data-val" id="val-imunisasi">90 %</div></div>
+            </div>
+        </div>
+
+        <!-- KLASTER 3 -->
+        <div class="klaster-section">
+            <div class="klaster-header">
+                <div class="klaster-title">Klaster 3: Usia Dewasa dan Lansia</div>
+                <button class="btn-edit" onclick="bukaForm('klaster3')">Isi / Edit Data</button>
+            </div>
+            <div class="data-list">
+                <div class="data-item"><div class="data-label">Skrining Hipertensi</div><div class="data-val" id="val-hipertensi">72 %</div></div>
+                <div class="data-item"><div class="data-label">Skrining Diabetes Melitus</div><div class="data-val" id="val-diabetes">65 %</div></div>
+                <div class="data-item"><div class="data-label">Lansia Dipantau Berkala</div><div class="data-val" id="val-lansia">120 Orang</div></div>
+            </div>
+        </div>
+
+        <!-- KLASTER 4 -->
+        <div class="klaster-section">
+            <div class="klaster-header">
+                <div class="klaster-title">Klaster 4: Penanggulangan Penyakit Menular</div>
+                <button class="btn-edit" onclick="bukaForm('klaster4')">Isi / Edit Data</button>
+            </div>
+            <div class="data-list">
+                <div class="data-item"><div class="data-label">Keberhasilan Pengobatan TB</div><div class="data-val" id="val-tb">88 %</div></div>
+                <div class="data-item"><div class="data-label">Pemeriksaan HIV/IMS</div><div class="data-val" id="val-hiv">45 Orang</div></div>
+                <div class="data-item"><div class="data-label">Angka Bebas Jentik (ABJ)</div><div class="data-val" id="val-abj">93 %</div></div>
+            </div>
+        </div>
+
+        <!-- KLASTER 5 -->
+        <div class="klaster-section">
+            <div class="klaster-header">
+                <div class="klaster-title">Klaster 5: Lintas Klaster & Penunjang</div>
+                <button class="btn-edit" onclick="bukaForm('klaster5')">Isi / Edit Data</button>
+            </div>
+            <div class="data-list">
+                <div class="data-item"><div class="data-label">Ketersediaan Obat Utama</div><div class="data-val" id="val-obat">95 %</div></div>
+                <div class="data-item"><div class="data-label">Kunjungan Lab / Penunjang</div><div class="data-val" id="val-lab">140 Pasien</div></div>
+                <div class="data-item"><div class="data-label">Realisasi Dana BOK</div><div class="data-val" id="val-bok_k5">78 %</div></div>
+            </div>
         </div>
     </div>
 
-    <main class="container mx-auto px-4 py-8 flex-grow">
+    <!-- HALAMAN FORM INPUT (DINAMIS) -->
+    <div id="page-form" class="page">
+        <header>
+            <button class="back-btn" onclick="kembaliKeDashboard()">← Kembali</button>
+            <h1 id="form-title">Input Data Klaster</h1>
+            <p>Silakan perbarui data di bawah ini, lalu klik Simpan.</p>
+        </header>
+
+        <div class="klaster-section">
+            <form id="main-form" onsubmit="simpanData(event)">
+                <input type="hidden" id="current-klaster">
+                <div id="form-fields">
+                    <!-- Isian input form akan muncul di sini otomatis lewat javascript -->
+                </div>
+                <button type="submit" class="btn-submit">Simpan Perubahan</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Struktur Data Default Website
+    const defaultData = {
+        klaster1: { sdm: "42", ikm: "92.5", ruk: "Sesuai Target" },
+        klaster2: { k4: "85", stunting: "8", imunisasi: "90" },
+        klaster3: { hipertensi: "72", diabetes: "65", lansia: "120" },
+        klaster4: { tb: "88", hiv: "45", abj: "93" },
+        klaster5: { obat: "95", lab: "140", bok_k5: "78" }
+    };
+
+    // Skema Form Input
+    const formSchema = {
+        klaster1: [
+            { id: "sdm", label: "Jumlah SDM Puskesmas (Orang)", type: "number" },
+            { id: "ikm", label: "Indeks Kepuasan Masyarakat", type: "text" },
+            { id: "ruk", label: "Nilai RUK / RPK", type: "text" }
+        ],
+        klaster2: [
+            { id: "k4", label: "Capaian K4 Ibu Hamil (%)", type: "number" },
+            { id: "stunting", label: "Jumlah Kasus Stunting (Anak)", type: "number" },
+            { id: "imunisasi", label: "Imunisasi Dasar Lengkap (%)", type: "number" }
+        ],
+        klaster3: [
+            { id: "hipertensi", label: "Skrining Hipertensi (%)", type: "number" },
+            { id: "diabetes", label: "Skrining Diabetes Melitus (%)", type: "number" },
+            { id: "lansia", label: "Lansia Dipantau Berkala (Orang)", type: "number" }
+        ],
+        klaster4: [
+            { id: "tb", label: "Keberhasilan Pengobatan TB (%)", type: "number" },
+            { id: "hiv", label: "Pemeriksaan HIV/IMS (Orang)", type: "number" },
+            { id: "abj", label: "Angka Bebas Jentik (ABJ) (%)", type: "number" }
+        ],
+        klaster5: [
+            { id: "obat", label: "Ketersediaan Obat Utama (%)", type: "number" },
+            { id: "lab", label: "Kunjungan Lab / Penunjang (Pasien)", type: "number" },
+            { id: "bok_k5", label: "Realisasi Dana BOK (%)", type: "number" }
+        ]
+    };
+
+    // Fungsi Memuat Data Saat Website Dibuka
+    function muatData() {
+        let data = JSON.parse(localStorage.getItem('puskData')) || defaultData;
         
-        <div id="halaman-dasbor" class="space-y-6">
-            <div class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                    <h2 class="text-2xl font-bold">Selamat Datang di Portal Data ILP</h2>
-                    <p class="text-emerald-100 text-sm mt-1">Sistem informasi pemantauan capaian indikator mutu kesehatan Klaster 1 hingga Klaster 5.</p>
-                </div>
-                <div class="bg-white/10 px-4 py-2 rounded-xl backdrop-blur-sm text-xs border border-white/10">
-                    <i class="fa-regular fa-calendar-days mr-2"></i> Penyimpanan Otomatis Aktif
-                </div>
-            </div>
+        // Update Tampilan Dashboard Utama
+        document.getElementById('dash-sdm').innerText = data.klaster1.sdm;
+        document.getElementById('dash-ikm').innerText = data.klaster1.ikm;
+        document.getElementById('dash-kunjungan').innerText = data.klaster5.lab;
+        document.getElementById('dash-bok').innerText = data.klaster5.bok_k5 + "%";
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
-                    <div class="p-5 border-b border-slate-50 bg-blue-50/50">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-md">Klaster 1</span>
-                            <i class="fa-solid fa-sliders text-blue-500"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-lg mt-3">Manajemen Puskesmas</h4>
-                    </div>
-                    <div class="p-5 space-y-3.5 text-sm">
-                        <div class="flex justify-between"><span class="text-slate-500">Jumlah SDM:</span> <span id="val-sdm" class="font-semibold text-slate-700">42 Personel</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Realisasi Keuangan (BOK):</span> <span id="val-bok" class="font-semibold text-emerald-600">58.4%</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Nilai Mutu (IKM):</span> <span id="val-ikm" class="font-semibold text-slate-700">92.5</span></div>
-                        <button onclick="bukaHalaman('input-klaster1')" class="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data</button>
-                    </div>
-                </div>
+        document.getElementById('val-sdm').innerText = data.klaster1.sdm + " Orang";
+        document.getElementById('val-ikm').innerText = data.klaster1.ikm;
+        document.getElementById('val-ruk').innerText = data.klaster1.ruk;
 
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
-                    <div class="p-5 border-b border-slate-50 bg-pink-50/50">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-pink-700 bg-pink-100 px-2.5 py-1 rounded-md">Klaster 2</span>
-                            <i class="fa-solid fa-baby text-pink-500"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-lg mt-3">Ibu dan Anak</h4>
-                    </div>
-                    <div class="p-5 space-y-3.5 text-sm">
-                        <div class="flex justify-between"><span class="text-slate-500">Kunjungan K4 Bumil:</span> <span id="val-k4" class="font-semibold text-slate-700">85% Target</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Balita Imunisasi:</span> <span id="val-imunisasi" class="font-semibold text-slate-700">142 Anak</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Kasus Stunting:</span> <span id="val-stunting" class="font-semibold text-rose-600">8 Anak</span></div>
-                        <button onclick="bukaHalaman('input-klaster2')" class="w-full mt-2 bg-pink-600 hover:bg-pink-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data</button>
-                    </div>
-                </div>
+        document.getElementById('val-k4').innerText = data.klaster2.k4 + " %";
+        document.getElementById('val-stunting').innerText = data.klaster2.stunting + " Anak";
+        document.getElementById('val-imunisasi').innerText = data.klaster2.imunisasi + " %";
 
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
-                    <div class="p-5 border-b border-slate-50 bg-purple-50/50">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-purple-700 bg-purple-100 px-2.5 py-1 rounded-md">Klaster 3</span>
-                            <i class="fa-solid fa-user-group text-purple-500"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-lg mt-3">Usia Dewasa & Lansia</h4>
-                    </div>
-                    <div class="p-5 space-y-3.5 text-sm">
-                        <div class="flex justify-between"><span class="text-slate-500">Skrining Produktif:</span> <span id="val-skrining" class="font-semibold text-slate-700">640 Warga</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Hipertensi Terkontrol:</span> <span id="val-hipertensi" class="font-semibold text-emerald-600">72%</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Posyandu Lansia:</span> <span id="val-lansia" class="font-semibold text-slate-700">185 Lansia</span></div>
-                        <button onclick="bukaHalaman('input-klaster3')" class="w-full mt-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data</button>
-                    </div>
-                </div>
+        document.getElementById('val-hipertensi').innerText = data.klaster3.hipertensi + " %";
+        document.getElementById('val-diabetes').innerText = data.klaster3.diabetes + " %";
+        document.getElementById('val-lansia').innerText = data.klaster3.lansia + " Orang";
 
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
-                    <div class="p-5 border-b border-slate-50 bg-red-50/50">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-red-700 bg-red-100 px-2.5 py-1 rounded-md">Klaster 4</span>
-                            <i class="fa-solid fa-biohazard text-red-500"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-lg mt-3">Penanggulangan Penyakit</h4>
-                    </div>
-                    <div class="p-5 space-y-3.5 text-sm">
-                        <div class="flex justify-between"><span class="text-slate-500">Kasus TBC Baru:</span> <span id="val-tbc" class="font-semibold text-amber-600">11 Kasus</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Kesembuhan TB:</span> <span id="val-sembuh" class="font-semibold text-emerald-600">100%</span></div>
-                        <div class="flex justify-between"><span class="text-slate-500">Bebas Jentik (ABJ):</span> <span id="val-abj" class="font-semibold text-slate-700">93.2%</span></div>
-                        <button onclick="bukaHalaman('input-klaster4')" class="w-full mt-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data</button>
-                    </div>
+        document.getElementById('val-tb').innerText = data.klaster4.tb + " %";
+        document.getElementById('val-hiv').innerText = data.klaster4.hiv + " Orang";
+        document.getElementById('val-abj').innerText = data.klaster4.abj + " %";
+
+        document.getElementById('val-obat').innerText = data.klaster5.obat + " %";
+        document.getElementById('val-lab').innerText = data.klaster5.lab + " Pasien";
+        document.getElementById('val-bok_k5').innerText = data.klaster5.bok_k5 + " %";
+    }
+
+    // Fungsi Navigasi ke Halaman Form
+    function bukaForm(klasterKey) {
+        document.getElementById('current-klaster').value = klasterKey;
+        
+        let namaKlaster = klasterKey.replace('klaster', 'Klaster ');
+        document.getElementById('form-title').innerText = "Input Data " + namaKlaster;
+        
+        let fieldsContainer = document.getElementById('form-fields');
+        fieldsContainer.innerHTML = '';
+        
+        let currentData = JSON.parse(localStorage.getItem('puskData')) || defaultData;
+        let fields = formSchema[klasterKey];
+        
+        fields.forEach(field => {
+            let value = currentData[klasterKey][field.id] || "";
+            let html = `
+                <div class="form-group">
+                    <label for="input-${field.id}">${field.label}</label>
+                    <input type="${field.type}" id="input-${field.id}" value="${value}" required>
                 </div>
+            `;
+            fieldsContainer.innerHTML += html;
+        });
+        
+        document.getElementById('page-dashboard').classList.remove('active-page');
+        document.getElementById('page-form').classList.add('active-page');
+        window.scrollTo(0,0);
+    }
+
+    function kembaliKeDashboard() {
+        document.getElementById('page-form').classList.remove('active-page');
+        document.getElementById('page-dashboard').classList.add('active-page');
+    }
+
+    // Fungsi Menyimpan Input Form ke Memori Otomatis Browser
+    function simpanData(event) {
+        event.preventDefault();
+        let klasterKey = document.getElementById('current-klaster').value;
+        let data = JSON.parse(localStorage.getItem('puskData')) || defaultData;
+        
+        let fields = formSchema[klasterKey];
+        fields.forEach(field => {
+            data[klasterKey][field.id] = document.getElementById(input-${field.id}).value;
+        });
+        
+        localStorage.setItem('puskData', JSON.stringify(data));
+        alert('Data berhasil diperbarui!');
+        muatData();
+        kembaliKeDashboard();
+    }
+
+    // Jalankan pemuatan data pertama kali
+    window.onload = muatData;
+</script>
+
+</body>
+</html>
