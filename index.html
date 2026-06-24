@@ -6,6 +6,10 @@
     <title>Sistem PKP Digital - Puskesmas Wanareja 2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .halaman { display: none; }
+        .halaman.aktif { display: block; }
+    </style>
 </head>
 <body class="bg-slate-50 font-sans min-h-screen flex flex-col">
 
@@ -21,14 +25,14 @@
                 </div>
             </div>
             <div class="bg-emerald-700 px-4 py-2 rounded-xl border border-emerald-500/30 text-sm">
-                <span class="font-medium text-emerald-50 text-xs md:text-sm">Mode: Input Master PKP</span>
+                <span class="font-medium text-emerald-50 text-xs">Mode: Input Master PKP</span>
             </div>
         </div>
     </header>
 
     <main class="container mx-auto px-4 py-8 flex-grow">
         
-        <div id="halaman-dasbor" class="space-y-6">
+        <div id="halaman-dasbor" class="halaman aktif space-y-6">
             <div class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white shadow-md">
                 <h2 class="text-2xl font-bold">Selamat Datang di Portal Input PKP</h2>
                 <p class="text-emerald-100 text-sm mt-1">Silakan pilih klaster di bawah ini untuk mengisi seluruh indikator kinerja resmi sesuai target tahunan.</p>
@@ -41,7 +45,7 @@
                         <h4 class="font-bold text-slate-800 text-lg mt-3">Manajemen Puskesmas</h4>
                     </div>
                     <div class="p-5 text-sm">
-                        <button type="button" onclick="pindahHalaman('klaster1')" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
+                        <button type="button" id="btn-ke-k1" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
                     </div>
                 </div>
 
@@ -51,7 +55,7 @@
                         <h4 class="font-bold text-slate-800 text-lg mt-3">Ibu dan Anak (KIA & Gizi)</h4>
                     </div>
                     <div class="p-5 text-sm">
-                        <button type="button" onclick="pindahHalaman('klaster2')" class="w-full bg-pink-600 hover:bg-pink-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
+                        <button type="button" id="btn-ke-k2" class="w-full bg-pink-600 hover:bg-pink-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
                     </div>
                 </div>
 
@@ -61,7 +65,7 @@
                         <h4 class="font-bold text-slate-800 text-lg mt-3">Usia Dewasa & Lansia (PTM)</h4>
                     </div>
                     <div class="p-5 text-sm">
-                        <button type="button" onclick="pindahHalaman('klaster3')" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
+                        <button type="button" id="btn-ke-k3" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
                     </div>
                 </div>
 
@@ -71,7 +75,7 @@
                         <h4 class="font-bold text-slate-800 text-lg mt-3">Penanggulangan Penyakit (P2)</h4>
                     </div>
                     <div class="p-5 text-sm">
-                        <button type="button" onclick="pindahHalaman('klaster4')" class="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
+                        <button type="button" id="btn-ke-k4" class="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
                     </div>
                 </div>
 
@@ -81,27 +85,408 @@
                         <h4 class="font-bold text-slate-800 text-lg mt-3">Lintas Klaster & Penunjang</h4>
                     </div>
                     <div class="p-5 text-sm">
-                        <button type="button" onclick="pindahHalaman('klaster5')" class="w-full bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
+                        <button type="button" id="btn-ke-k5" class="w-full bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition shadow">Isi / Edit Data PKP</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="halaman-form" class="hidden">
-            <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
-                <div id="form-header-bg" class="p-6 text-white">
-                    <h3 id="form-title" class="text-xl font-bold">Input Data PKP</h3>
-                    <p class="text-xs text-white/80 mt-1">Masukkan capaian riil (%) untuk masing-masing indikator kinerja di bawah ini.</p>
+        <div id="form-klaster1" class="halaman max-w-3xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+            <div class="p-6 text-white bg-blue-600">
+                <h3 class="text-xl font-bold">Master PKP: Klaster 1 - Manajemen</h3>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">1. Capaian Perencanaan Puskesmas (RUK & RPK)</span>
+                    <input type="number" id="k1-0" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
                 </div>
-                <div class="p-6">
-                    <input type="hidden" id="current-klaster-key">
-                    <div id="list-input-indikator" class="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
-                        </div>
-                    
-                    <div class="flex space-x-3 mt-6 border-t pt-4">
-                        <button type="button" onclick="kembaliKeDasbor()" class="w-1/3 bg-slate-100 hover:bg-slate-200 py-2.5 rounded-xl text-sm font-semibold border transition">Kembali</button>
-                        <button type="button" onclick="simpanDataForm()" class="w-2/3 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-sm font-semibold shadow transition">Simpan Semua Capaian</button>
-                    </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">2. Manajemen Sumber Daya Manusia (SDM) Puskesmas</span>
+                    <input type="number" id="k1-1" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">3. Manajemen Keuangan & Realisasi Dana BOK</span>
+                    <input type="number" id="k1-2" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">4. Manajemen Data & Sistem Informasi Kesehatan</span>
+                    <input type="number" id="k1-3" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">5. Indeks Kepuasan Masyarakat (IKM) Puskesmas</span>
+                    <input type="number" id="k1-4" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="flex space-x-3 mt-6 border-t pt-4">
+                    <button type="button" class="btn-kembali w-1/3 bg-slate-100 py-2.5 rounded-xl text-sm font-semibold border">Kembali</button>
+                    <button type="button" onclick="simpanData('k1', 5)" class="w-2/3 bg-emerald-600 text-white py-2.5 rounded-xl text-sm font-semibold shadow">Simpan</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="form-klaster2" class="halaman max-w-3xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+            <div class="p-6 text-white bg-pink-600">
+                <h3 class="text-xl font-bold">Master PKP: Klaster 2 - KIA & Gizi</h3>
+            </div>
+            <div class="p-6 space-y-4 max-h-[60vh] overflow-y-auto">
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">1. Cakupan ANC TM 1 USG</span>
+                    <input type="number" id="k2-0" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">2. Cakupan K4</span>
+                    <input type="number" id="k2-1" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">3. Cakupan ANC TM III USG</span>
+                    <input type="number" id="k2-2" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">4. Cakupan K6</span>
+                    <input type="number" id="k2-3" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">5. Persentase Ibu hamil dengan Anemia</span>
+                    <input type="number" id="k2-4" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">6. Ibu hamil yang mendapatkan 90 tablet tambah darah (TTD)</span>
+                    <input type="number" id="k2-5" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">7. Cakupan Ibu bersalin yang mendapatkan pelayanan sesuai standar ( PF )</span>
+                    <input type="number" id="k2-6" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">8. Cakupan Ibu Nifas yang mendapatkan pelayanan sesuai standar ( KF4)</span>
+                    <input type="number" id="k2-7" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">9. Cakupan Ibu Hamil yang memiliki status imunisasi T2+</span>
+                    <input type="number" id="k2-8" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">10. Persentase Ibu Hamil Kurang Energi Kronis (KEK) yang mendapatkan penanganan</span>
+                    <input type="number" id="k2-9" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">11. Ibu hamil dengan Anemia sedang dan berat yang dirujuk ke FKRTL</span>
+                    <input type="number" id="k2-10" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">12. Cakupan Bayi Baru Lahir mendapat Inisiasi Menyusu Dini (IMD)</span>
+                    <input type="number" id="k2-11" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">13. Presentasi Bayi dengan BBLR yang mendapatkan BUKU KIA Bayi kecil</span>
+                    <input type="number" id="k2-12" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">14. Cakupan Neonatus Komplikasi yang Ditangani</span>
+                    <input type="number" id="k2-13" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">15. Presentase bayi baru lahir yang mendapat pelayanan lengkap (KN Lengkap)</span>
+                    <input type="number" id="k2-14" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">16. Persentase Bayi Baru Lahir yang Mendapatkan Skrinning Hipotiroid Kongenital (SHK)</span>
+                    <input type="number" id="k2-15" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">17. Persentase Bayi Baru Lahir yang Mendapatkan Skrining Jantung Bawaan Kritis</span>
+                    <input type="number" id="k2-16" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">18. Cakupan Kunjungan Bayi</span>
+                    <input type="number" id="k2-17" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">19. Cakupan Pelayanan Anak Balita</span>
+                    <input type="number" id="k2-18" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">20. Cakupan Balita Yang Dipantau Pertumbuhan dan Perkembangannya</span>
+                    <input type="number" id="k2-19" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">21. Bayi usia kurang dari 6 bulan mendapatkan ASI eksklusif</span>
+                    <input type="number" id="k2-20" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">22. Prevalensi balita stunting (pendek dan sangat pendek)</span>
+                    <input type="number" id="k2-21" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">23. Prevalensi balita wasting (gizi kurang dan gizi buruk)</span>
+                    <input type="number" id="k2-22" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">24. Cakupan balita dipantau pertumbuhan dan dientry di ePPGBM</span>
+                    <input type="number" id="k2-23" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">25. Cakupan Anak Pra Sekolah yang dilayani SDIDTK minimal 2 x setahun</span>
+                    <input type="number" id="k2-24" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">26. Cakupan Balita Sakit Dilayani MTBS</span>
+                    <input type="number" id="k2-25" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">27. Persentase balita gizi buruk mendapatkan pelayanan tata laksana</span>
+                    <input type="number" id="k2-26" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">28. Cakupan bayi 0-11 bulan yang mendapat Imunisasi Dasar Lengkap (IDL)</span>
+                    <input type="number" id="k2-27" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">29. Cakupan anak usia 12-24 bulan yang mendapat imunisasi lanjutan baduta lengkap</span>
+                    <input type="number" id="k2-28" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">30. Cakupan anak yang mendapat imunisasi lanjutan lengkap di usia sekolah dasar</span>
+                    <input type="number" id="k2-29" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">31. Cakupan pemeriksaan kesehatan pada usia pendidikan dasar</span>
+                    <input type="number" id="k2-30" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">32. Puskesmas melakukan pembinaan UKSM 4X dalam 1 tahun</span>
+                    <input type="number" id="k2-31" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">33. Persentase remaja putri mendapat TTD</span>
+                    <input type="number" id="k2-32" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">34. Persentase remaja putri yang diskrining anemia</span>
+                    <input type="number" id="k2-33" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">35. Persentase remaja putri anemia</span>
+                    <input type="number" id="k2-34" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">36. Persentase remaja putri anemia yang mendapat tatalaksana</span>
+                    <input type="number" id="k2-35" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+            </div>
+            <div class="p-6 border-t flex space-x-3 bg-white">
+                <button type="button" class="btn-kembali w-1/3 bg-slate-100 py-2.5 rounded-xl text-sm font-semibold border">Kembali</button>
+                <button type="button" onclick="simpanData('k2', 36)" class="w-2/3 bg-emerald-600 text-white py-2.5 rounded-xl text-sm font-semibold shadow">Simpan</button>
+            </div>
+        </div>
+
+        <div id="form-klaster3" class="halaman max-w-3xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+            <div class="p-6 text-white bg-purple-600">
+                <h3 class="text-xl font-bold">Master PKP: Klaster 3 - Usia Dewasa & Lansia</h3>
+            </div>
+            <div class="p-6 space-y-4 max-h-[60vh] overflow-y-auto">
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">1. Persentase orang usia 15 – 59 tahun mendapatkan skrining kesehatan</span>
+                    <input type="number" id="k3-0" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">2. Pembinaan kesehatan kerja pada kelompok kerja</span>
+                    <input type="number" id="k3-1" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">3. Persentase penderita hipertensi mendapatkan pelayanan standar</span>
+                    <input type="number" id="k3-2" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">4. Persentase Penderita Diabetes Mellitus mendapatkan pelayanan standar</span>
+                    <input type="number" id="k3-3" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">5. Persentase ODGJ berat mendapatkan pelayanan kesehatan jiwa</span>
+                    <input type="number" id="k3-4" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">6. Cakupan puskesmas yang melaksanakan UBM</span>
+                    <input type="number" id="k3-5" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">7. Presentase WUS mendapatkan pelayanan IVA Test dan HPVDNA</span>
+                    <input type="number" id="k3-6" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">8. Puskesmas melakukan K3 Internal</span>
+                    <input type="number" id="k3-7" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">9. Pos UKK yang terbentuk</span>
+                    <input type="number" id="k3-8" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">10. Puskesmas melakukan kesehatan olah raga</span>
+                    <input type="number" id="k3-9" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">11. Cakupan Kunjungan Penduduk baru Rawat jalan</span>
+                    <input type="number" id="k3-10" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">12. Cakupan rujukan Non Spesialistik</span>
+                    <input type="number" id="k3-11" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">13. Cakupan Posyandu Aktif</span>
+                    <input type="number" id="k3-12" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">14. Cakupan Lansia umur >60 tahun yang di screening</span>
+                    <input type="number" id="k3-13" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">15. Cakupan Home care Lansia</span>
+                    <input type="number" id="k3-14" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">16. Cakupan Perawatan Jangka Panjang Bagi Lansia</span>
+                    <input type="number" id="k3-15" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">17. Persentase Usia Lanjut > 60 tahun mendapatkan pelayanan standar</span>
+                    <input type="number" id="k3-16" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+            </div>
+            <div class="p-6 border-t flex space-x-3 bg-white">
+                <button type="button" class="btn-kembali w-1/3 bg-slate-100 py-2.5 rounded-xl text-sm font-semibold border">Kembali</button>
+                <button type="button" onclick="simpanData('k3', 17)" class="w-2/3 bg-emerald-600 text-white py-2.5 rounded-xl text-sm font-semibold shadow">Simpan</button>
+            </div>
+        </div>
+
+        <div id="form-klaster4" class="halaman max-w-3xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+            <div class="p-6 text-white bg-red-600">
+                <h3 class="text-xl font-bold">Master PKP: Klaster 4 - P2M & Kesling</h3>
+            </div>
+            <div class="p-6 space-y-4 max-h-[60vh] overflow-y-auto">
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">1. Persentase Orang terduga TBC mendapatkan pelayanan sesuai standar</span>
+                    <input type="number" id="k4-0" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">2. Angka keberhasilan pengobatan TB paru semua kasus</span>
+                    <input type="number" id="k4-1" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">3. Angka bebas jentik (ABJ)</span>
+                    <input type="number" id="k4-2" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">4. Pelayanan kesehatan orang dengan risiko terinfeksi HIV</span>
+                    <input type="number" id="k4-3" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">5. Seluruh kasus GHPR ditangani sesuai standar</span>
+                    <input type="number" id="k4-4" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">6. Persentase penderita diare balita ditangani sesuai standar</span>
+                    <input type="number" id="k4-5" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">7. Persentase kasus pneumonia pada balita ditangani sesuai standar</span>
+                    <input type="number" id="k4-6" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">8. Proporsi cacat tingkat II diantara penderita baru</span>
+                    <input type="number" id="k4-7" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">9. DDHB pada ibu hamil dan pemantuan bayi dari ibu Hepatitis B</span>
+                    <input type="number" id="k4-8" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">10. Jumlah pelaporan kasus suspek atau probable leptospirosis</span>
+                    <input type="number" id="k4-9" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">11. Persentase kasus KLB dilakukan PE &lt; 24 jam</span>
+                    <input type="number" id="k4-10" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">12. Penemuan suspek rubela</span>
+                    <input type="number" id="k4-11" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">13. Penemuan kasus AFP pada anak &lt; 15 tahun</span>
+                    <input type="number" id="k4-12" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">14. Cakupan kelengkapan Unit pelapor pada SKDR mingguan</span>
+                    <input type="number" id="k4-13" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">15. Cakupan ketepatan Unit pelapor pada SKDR mingguan</span>
+                    <input type="number" id="k4-14" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">16. Cakupan ketepatan Unit pelapor memunculkan alert SKDR</span>
+                    <input type="number" id="k4-15" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">17. Cakupan Pemeriksaan Kesehatan Haji</span>
+                    <input type="number" id="k4-16" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">18. Cakupan Kelengkapan Data Siskohatkes</span>
+                    <input type="number" id="k4-17" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">19. TFU Prioritas yang dibina dan diawasi</span>
+                    <input type="number" id="k4-18" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">20. TPP yang dibina dan diawasi</span>
+                    <input type="number" id="k4-19" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">21. Desa atau kelurahan STBM</span>
+                    <input type="number" id="k4-20" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">22. Cakupan Industri rumah tangga pangan (IRTP) memenuhi ketentuan</span>
+                    <input type="number" id="k4-21" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">23. Cakupan Tempat Pengelolaan Pangan (TPP) memenuhi syarat</span>
+                    <input type="number" id="k4-22" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+            </div>
+            <div class="p-6 border-t flex space-x-3 bg-white">
+                <button type="button" class="btn-kembali w-1/3 bg-slate-100 py-2.5 rounded-xl text-sm font-semibold border">Kembali</button>
+                <button type="button" onclick="simpanData('k4', 23)" class="w-2/3 bg-red-600 text-white py-2.5 rounded-xl text-sm font-semibold shadow">Simpan</button>
+            </div>
+        </div>
+
+        <div id="form-klaster5" class="halaman max-w-3xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+            <div class="p-6 text-white bg-amber-600">
+                <h3 class="text-xl font-bold">Master PKP: Klaster 5 - Lintas Klaster</h3>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">1. Ketersediaan Stok Obat Utama & Esensial</span>
+                    <input type="number" id="k5-0" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">2. Kesesuaian Pelayanan Farmasi dengan Standar Resep</span>
+                    <input type="number" id="k5-1" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">3. Pelayanan Pemeriksaan Laboratorium Sesuai Standar</span>
+                    <input type="number" id="k5-2" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-700 w-3/4">4. Cakupan Pelayanan Kegawatdaruratan (UGD) Respon Cepat</span>
+                    <input type="number" id="k5-3" placeholder="0" class="w-24 text-right pr-3 py-1 rounded-lg border border-slate-300 font-bold text-xs outline-none">
+                </div>
+                <div class="flex space-x-3 mt-6 border-t pt-4">
+                    <button type="button" class="btn-kembali w-1/3 bg-slate-100 py-2.5 rounded-xl text-sm font-semibold border">Kembali</button>
+                    <button type="button" onclick="simpanData('k5', 4)" class="w-2/3 bg-emerald-600 text-white py-2.5 rounded-xl text-sm font-semibold shadow">Simpan</button>
                 </div>
             </div>
         </div>
@@ -113,137 +498,61 @@
     </footer>
 
     <script>
-        // DATA INDIKATOR ASLI 100% DARI FILE EXCEL ANDA
-        const dataIndikator = {
-            klaster1: [
-                "Capaian Perencanaan Puskesmas (RUK & RPK)",
-                "Manajemen Sumber Daya Manusia (SDM) Puskesmas",
-                "Manajemen Keuangan & Realisasi Dana BOK",
-                "Manajemen Data & Sistem Informasi Kesehatan",
-                "Indeks Kepuasan Masyarakat (IKM) Puskesmas"
-            ],
-            klaster2: [
-                "Cakupan ANC TM 1 USG", "Cakupan K4", "Cakupan ANC TM III USG", "Cakupan K6", 
-                "Persentase Ibu hamil dengan Anemia", "Ibu hamil yang mendapatkan 90 tablet tambah darah (TTD)", 
-                "Cakupan Ibu bersalin yang mendapatkan pelayanan sesuai standar ( PF )", 
-                "Cakupan Ibu Nifas yang mendapatkan pelayanan sesuai standar ( KF4)", 
-                "Cakupan Ibu Hamil yang memiliki status imunisasi T2+", 
-                "Persentase Ibu Hamil Kurang Energi Kronis (KEK) yang mendapatkan penanganan (Pemberian PMT).", 
-                "Ibu hamil dengan Anemia sedang dan berat yang dirujuk ke FKRTL", 
-                "Cakupan Bayi Baru Lahir mendapat Inisiasi Menyusu Dini (IMD)", 
-                "Presentasi Bayi dengan BBLR yang mendapatkan BUKU KIA Bayi kecil", 
-                "Cakupan Neonatus Komplikasi yang Ditangani", 
-                "Presentase bayi baru lahir yang mendapat pelayanan lengkap(KN Lengkap)", 
-                "Persentase Bayi Baru Lahir yang Mendapatkan Pelayanan Skrinning Hipotiroid Kongenital (SHK)", 
-                "Persentase Bayi Baru Lahir yang dilakukan Mendapatkan Skrining Penyakit Jantung Bawaan Kritis", 
-                "Cakupan Kunjungan Bayi", "Cakupan Pelayanan Anak Balita", 
-                "Cakupan Balita Yang Dipantau Pertumbuhan dan Perkembangannya", 
-                "Bayi usia kurang dari 6 bulan mendapatkan ASI eksklusif", 
-                "Prevalensi balita stunting (pendek dan sangat pendek)", 
-                "Prevalensi balita wasting (gizi kurang di gizi buruk)", 
-                "Cakupan balita dipantau pertumbuhan dan dientry di ePPGBM", 
-                "Cakupan Anak Pra Sekolah yang dilayani SDIDTK minimal 2 x setahun", 
-                "Cakupan Balita Sakit Dilayani MTBS", 
-                "Persentase balita gizi buruk mendapatkan pelayanan tata laksana gizi buruk", 
-                "Cakupan bayi 0-11 bulan yang mendapat Imunisasi Dasar Lengkap (IDL)", 
-                "Cakupan anak usia 12-24 bulan yang mendapat imunisasi lanjutan baduta lengkap (IBL)", 
-                "Cakupan anak yang mendapatkan imunisasi lanjutan lengkap di usia sekolah dasar (ISL)", 
-                "Cakupan pemeriksaan kesehatan pada usia pendidikan dasar di sekolah atau di luar sekolah", 
-                "Puskesmas melakukan pembinaan UKSM 4X dalam 1 tahun pada satuan pendidikan", 
-                "Persentase remaja putri mendapat TTD", "Persentase remaja putri yang diskrining anemia", 
-                "Persentase remaja putri anemia", "Persentase remaja putri anemia yang mendapat tatalaksana"
-            ],
-            klaster3: [
-                "Persentase orang usia 15 – 59 tahun mendapatkan skrining kesehatan sesuai standar", 
-                "Pembinaan kesehatan kerja yang dilakukan puskesmas pada kelompok kerja.", 
-                "Persentase penderita hipertensi yang mendapatkan pelayanan kesehatan sesuai standar", 
-                "Persentase Penderita Diabetes Mellitus yang mendapatkan pelayanan kesehatan sesuai standard", 
-                "Persentase orang dengan gangguan jiwa berat yang mendapatkan pelayanan kesehatan jiwa sesuai standar", 
-                "Cakupan puskesmas yang melaksanakan UBM", "Presentase WUS yang mendapatkan pelayanan IVA Test dan HPVDNA", 
-                "Puskesmas melakukan K3 Internal", "Pos UKK yang terbentuk", "Puskesmas melakukan kesehatan olah raga", 
-                "Cakupan Kunjungan Penduduk baru Rawat jalan", "Cakupan rujukan Non Spesialistik", 
-                "Cakupan Posyandu Aktif", "Cakupan Lansia umur >60 tahun yang di screening", 
-                "Cakupan Home care Lansia", "Cakupan Perawatan Jangka Panjang Bagi Lansia", 
-                "Persentase Usia Lanjut > 60 tahun yang mendapatkan pelayanan sesuai standar"
-            ],
-            klaster4: [
-                "Persentase Orang terduga TBC mendapatkan pelayanan TBC sesuai standar Kesenjangan", 
-                "Angka keberhasilan pengobatan TB paru semua kasus yang sensitif obat", "Angka bebas jentik (ABJ)", 
-                "Pelayanan kesehatan orang dengan risiko terinfeksi HIV", "Seluruh kasus GHPR ditangani sesuai standar", 
-                "Persentase penderita diare balita yang ditangani sesuai standar dalam 1 thn", 
-                "Persentase kasus pneumonia pada balita yang ditangani sesuai standar", 
-                "Proporsi cacat tingkat II diantara penderita baru", 
-                "DDHB (pemeriksaan 3E) pada ibu hamil dan pemantuan bayi dari ibu yang hepatitis B", 
-                "Jumlah pelaporan kasus suspek atau probable leptospirosis", 
-                "Persentase kasus KLB/Penyakit potensi KLB yang dilakukan penyelidikan epidemiologi < 24 jam", 
-                "Penemuan suspek rubela", "Penemuan kasus AFP (lumpuh layuh akut) pada anak < 15 tahun", 
-                "Cakupan kelengkapan Unit pelapor pada pelaporan mingguan SKDR", 
-                "Cakupan ketepatan Unit pelapor pada pelaporan mingguan SKDR", 
-                "Cakupan ketepatan Unit pelapor memunculkan alert pada pelaporan mingguan SKDR", 
-                "Cakupan Pemeriksaan Kesehatan Haji", "Cakupan Kelengkapan Data Siskohatkes", 
-                "TFU Prioritas yang dibina dan diawasi", "TPP yang dibina dan diawasi", "Desa atau kelurahan STBM", 
-                "Cakupan Industri rumah tangga pangan (IRTP) yang memenuhi ketentuan", 
-                "Cakupan Tempat Pengelolaan Pangan (TPP) yang memenuhi syarat"
-            ],
-            klaster5: [
-                "Ketersediaan Stok Obat Utama & Esensial",
-                "Kesesuaian Pelayanan Farmasi dengan Standar Resep",
-                "Pelayanan Pemeriksaan Laboratorium Sesuai Standar",
-                "Cakupan Pelayanan Kegawatdaruratan (UGD) Respon Cepat"
-            ]
-        };
+        // Ambil Elemen Halaman Utama
+        var dasbor = document.getElementById('halaman-dasbor');
+        var f1 = document.getElementById('form-klaster1');
+        var f2 = document.getElementById('form-klaster2');
+        var f3 = document.getElementById('form-klaster3');
+        var f4 = document.getElementById('form-klaster4');
+        var f5 = document.getElementById('form-klaster5');
 
-        const bgWarna = { klaster1: "bg-blue-600", klaster2: "bg-pink-600", klaster3: "bg-purple-600", klaster4: "bg-red-600", klaster5: "bg-amber-600" };
-        const teksJudul = { klaster1: "Klaster 1 - Manajemen", klaster2: "Klaster 2 - KIA & Gizi", klaster3: "Klaster 3 - Usia Dewasa & Lansia", klaster4: "Klaster 4 - P2M (Penyakit)", klaster5: "Klaster 5 - Lintas Klaster" };
+        // Navigasi Menggunakan Listener Resmi (Anti Blokir Keamanan)
+        document.getElementById('btn-ke-k1').addEventListener('click', function() { SembunyikanSemua(); f1.classList.add('aktif'); muatNilai('k1', 5); });
+        document.getElementById('btn-ke-k2').addEventListener('click', function() { SembunyikanSemua(); f2.classList.add('aktif'); muatNilai('k2', 36); });
+        document.getElementById('btn-ke-k3').addEventListener('click', function() { SembunyikanSemua(); f3.classList.add('aktif'); muatNilai('k3', 17); });
+        document.getElementById('btn-ke-k4').addEventListener('click', function() { SembunyikanSemua(); f4.classList.add('aktif'); muatNilai('k4', 23); });
+        document.getElementById('btn-ke-k5').addEventListener('click', function() { SembunyikanSemua(); f5.classList.add('aktif'); muatNilai('k5', 4); });
 
-        function pindahHalaman(key) {
-            document.getElementById('current-klaster-key').value = key;
-            document.getElementById('form-header-bg').className = "p-6 text-white " + bgWarna[key];
-            document.getElementById('form-title').innerText = "Master PKP: " + teksJudul[key];
-            
-            let listContainer = document.getElementById('list-input-indikator');
-            listContainer.innerHTML = '';
-            
-            let arrayIndikator = dataIndikator[key];
-            for (let i = 0; i < arrayIndikator.length; i++) {
-                let namaIndikator = arrayIndikator[i];
-                let idInput = "input-" + key + "-" + i;
-                let nilaiSimpanan = localStorage.getItem(idInput) || "";
-                
-                listContainer.innerHTML += `
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-2 shadow-sm">
-                        <span class="text-xs font-bold text-slate-700 md:w-3/4 leading-relaxed">${i + 1}. ${namaIndikator}</span>
-                        <div class="relative md:w-1/4 flex items-center">
-                            <input type="number" id="${idInput}" value="${nilaiSimpanan}" min="0" max="100" placeholder="0" class="w-full text-right pr-8 pl-2 py-1 rounded-lg border border-slate-300 outline-none font-bold text-xs">
-                            <span class="absolute right-3 text-xs font-bold text-slate-400">%</span>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            document.getElementById('halaman-dasbor').classList.add('hidden');
-            document.getElementById('halaman-form').classList.remove('hidden');
+        // Tombol Kembali
+        var kembalis = document.querySelectorAll('.btn-kembali');
+        for (var i = 0; i < kembalis.length; i++) {
+            kembalis[i].addEventListener('click', function() {
+                SembunyikanSemua();
+                dasbor.classList.add('aktif');
+            });
+        }
+
+        function SembunyikanSemua() {
+            dasbor.classList.remove('aktif');
+            f1.classList.remove('aktif');
+            f2.classList.remove('aktif');
+            f3.classList.remove('aktif');
+            f4.classList.remove('aktif');
+            f5.classList.remove('aktif');
             window.scrollTo(0, 0);
         }
 
-        function kembaliKeDasbor() {
-            document.getElementById('halaman-form').classList.add('hidden');
-            document.getElementById('halaman-dasbor').classList.remove('hidden');
-            window.scrollTo(0, 0);
+        // Fungsi Simpan Mandiri
+        function simpanData(prefix, total) {
+            for (var j = 0; j < total; j++) {
+                var el = document.getElementById(prefix + '-' + j);
+                if (el) {
+                    localStorage.setItem('pkp_val_' + prefix + '_' + j, el.value);
+                }
+            }
+            alert('Sukses! Seluruh data capaian berhasil diamankan di penyimpanan browser Anda.');
+            SembunyikanSemua();
+            dasbor.classList.add('aktif');
         }
 
-        function simpanDataForm() {
-            let key = document.getElementById('current-klaster-key').value;
-            let arrayIndikator = dataIndikator[key];
-            
-            for (let i = 0; i < arrayIndikator.length; i++) {
-                let idInput = "input-" + key + "-" + i;
-                let isiAngka = document.getElementById(idInput).value;
-                localStorage.setItem(idInput, isiAngka);
+        // Fungsi Memuat Nilai
+        function muatNilai(prefix, total) {
+            for (var j = 0; j < total; j++) {
+                var el = document.getElementById(prefix + '-' + j);
+                if (el) {
+                    el.value = localStorage.getItem('pkp_val_' + prefix + '_' + j) || "";
+                }
             }
-            
-            alert('Sukses! Data indikator ' + teksJudul[key] + ' berhasil disimpan.');
-            kembaliKeDasbor();
         }
     </script>
 </body>
