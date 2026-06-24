@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistem Data ILP - Puskesmas Wanareja 2</title>
+    <title>Sistem PKP Digital - Puskesmas Wanareja 2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-slate-50 font-sans min-h-screen flex flex-col">
 
+    <!-- Header Utama -->
     <header class="bg-emerald-600 text-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -17,50 +18,264 @@
                 </div>
                 <div>
                     <h1 class="font-extrabold text-xl tracking-wide leading-tight">PUSKESMAS WANAREJA 2</h1>
-                    <p class="text-xs text-emerald-100 font-medium">Sistem Integrasi Pelayanan Kesehatan Primer (ILP)</p>
+                    <p class="text-xs text-emerald-100 font-medium">Sistem Penilaian Kinerja Puskesmas (PKP) Digital 2026</p>
                 </div>
             </div>
-            <div class="flex items-center space-x-2 bg-emerald-700 px-4 py-2 rounded-xl border border-emerald-500/30 text-sm">
-                <i class="fa-solid fa-user-shield text-emerald-300"></i>
-                <span class="font-medium text-emerald-50 text-xs md:text-sm">Mode: Input PKP Digital</span>
+            <div class="bg-emerald-700 px-4 py-2 rounded-xl border border-emerald-500/30 text-sm">
+                <span class="font-medium text-emerald-50 text-xs md:text-sm">Mode: Input Master PKP</span>
             </div>
         </div>
     </header>
 
+    <!-- Konten Utama -->
     <main class="container mx-auto px-4 py-8 flex-grow">
         
+        <!-- DASHBOARD UTAMA -->
         <div id="halaman-dasbor" class="block space-y-6">
-            <div class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div>
-                    <h2 class="text-2xl font-bold">Selamat Datang di Portal PKP & ILP</h2>
-                    <p class="text-emerald-100 text-sm mt-1">Sistem informasi pemantauan capaian indikator Penilaian Kinerja Puskesmas (PKP).</p>
-                </div>
-                <div class="bg-white/10 px-4 py-2 rounded-xl backdrop-blur-sm text-xs border border-white/10">
-                    <i class="fa-regular fa-calendar-days mr-2"></i> Penyimpanan Mandiri Aktif
-                </div>
+            <div class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white shadow-md">
+                <h2 class="text-2xl font-bold">Selamat Datang di Portal Input PKP</h2>
+                <p class="text-emerald-100 text-sm mt-1">Silakan pilih klaster di bawah ini untuk mengisi seluruh indikator kinerja resmi sesuai target tahunan.</p>
             </div>
 
+            <!-- Grid Klaster -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- KLASTER 1 -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
                     <div class="p-5 border-b border-slate-50 bg-blue-50/50">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-md">Klaster 1</span>
-                            <i class="fa-solid fa-sliders text-blue-500"></i>
-                        </div>
+                        <span class="text-xs font-bold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-md">Klaster 1</span>
                         <h4 class="font-bold text-slate-800 text-lg mt-3">Manajemen Puskesmas</h4>
                     </div>
-                    <div class="p-5 space-y-3.5 text-sm">
-                        <div class="flex justify-between"><span class="text-slate-500">Kinerja Manajemen:</span> <span id="val-preview-k1" class="font-semibold text-slate-400">Belum Diinput</span></div>
-                        <button type="button" onclick="pindahHalaman('klaster1')" class="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data PKP</button>
+                    <div class="p-5 text-sm">
+                        <div class="flex justify-between mb-4"><span class="text-slate-500">Status Data:</span> <span id="val-preview-klaster1" class="font-semibold text-slate-400">Belum Diinput</span></div>
+                        <button type="button" onclick="pindahHalaman('klaster1')" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data PKP</button>
                     </div>
                 </div>
 
+                <!-- KLASTER 2 -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
                     <div class="p-5 border-b border-slate-50 bg-pink-50/50">
-                        <div class="flex justify-between items-center">
-                            <span class="text-xs font-bold text-pink-700 bg-pink-100 px-2.5 py-1 rounded-md">Klaster 2</span>
-                            <i class="fa-solid fa-baby text-pink-500"></i>
-                        </div>
-                        <h4 class="font-bold text-slate-800 text-lg mt-3">Ibu dan Anak</h4>
+                        <span class="text-xs font-bold text-pink-700 bg-pink-100 px-2.5 py-1 rounded-md">Klaster 2</span>
+                        <h4 class="font-bold text-slate-800 text-lg mt-3">Ibu dan Anak (KIA & Gizi)</h4>
                     </div>
-                    <div class="p-5 space-
+                    <div class="p-5 text-sm">
+                        <div class="flex justify-between mb-4"><span class="text-slate-500">Status Data:</span> <span id="val-preview-klaster2" class="font-semibold text-slate-400">Belum Diinput</span></div>
+                        <button type="button" onclick="pindahHalaman('klaster2')" class="w-full bg-pink-600 hover:bg-pink-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data PKP</button>
+                    </div>
+                </div>
+
+                <!-- KLASTER 3 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
+                    <div class="p-5 border-b border-slate-50 bg-purple-50/50">
+                        <span class="text-xs font-bold text-purple-700 bg-purple-100 px-2.5 py-1 rounded-md">Klaster 3</span>
+                        <h4 class="font-bold text-slate-800 text-lg mt-3">Usia Dewasa & Lansia (PTM)</h4>
+                    </div>
+                    <div class="p-5 text-sm">
+                        <div class="flex justify-between mb-4"><span class="text-slate-500">Status Data:</span> <span id="val-preview-klaster3" class="font-semibold text-slate-400">Belum Diinput</span></div>
+                        <button type="button" onclick="pindahHalaman('klaster3')" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data PKP</button>
+                    </div>
+                </div>
+
+                <!-- KLASTER 4 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
+                    <div class="p-5 border-b border-slate-50 bg-red-50/50">
+                        <span class="text-xs font-bold text-red-700 bg-red-100 px-2.5 py-1 rounded-md">Klaster 4</span>
+                        <h4 class="font-bold text-slate-800 text-lg mt-3">Penanggulangan Penyakit (P2)</h4>
+                    </div>
+                    <div class="p-5 text-sm">
+                        <div class="flex justify-between mb-4"><span class="text-slate-500">Status Data:</span> <span id="val-preview-klaster4" class="font-semibold text-slate-400">Belum Diinput</span></div>
+                        <button type="button" onclick="pindahHalaman('klaster4')" class="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data PKP</button>
+                    </div>
+                </div>
+
+                <!-- KLASTER 5 -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
+                    <div class="p-5 border-b border-slate-50 bg-amber-50/50">
+                        <span class="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-md">Klaster 5</span>
+                        <h4 class="font-bold text-slate-800 text-lg mt-3">Lintas Klaster & Pelayanan</h4>
+                    </div>
+                    <div class="p-5 text-sm">
+                        <div class="flex justify-between mb-4"><span class="text-slate-500">Status Data:</span> <span id="val-preview-klaster5" class="font-semibold text-slate-400">Belum Diinput</span></div>
+                        <button type="button" onclick="pindahHalaman('klaster5')" class="w-full bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold py-2.5 rounded-xl transition">Isi / Edit Data PKP</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORM INPUT BERJENJANG -->
+        <div id="halaman-form" class="hidden">
+            <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
+                <div id="form-header-bg" class="p-6 text-white">
+                    <h3 id="form-title" class="text-xl font-bold">Input Data PKP</h3>
+                    <p class="text-xs text-white/80 mt-1">Masukkan capaian riil (%) untuk masing-masing indikator kinerja di bawah ini.</p>
+                </div>
+                <div class="p-6">
+                    <input type="hidden" id="current-klaster-key">
+                    <div id="list-input-indikator" class="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
+                        <!-- Indikator PKP di-render otomatis via JavaScript -->
+                    </div>
+                    
+                    <div class="flex space-x-3 mt-6 border-t pt-4">
+                        <button type="button" onclick="kembaliKeDasbor()" class="w-1/3 bg-slate-100 hover:bg-slate-200 py-2.5 rounded-xl text-sm font-semibold border transition">Kembali</button>
+                        <button type="button" onclick="simpanDataForm()" class="w-2/3 bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-sm font-semibold shadow transition">Simpan Semua Capaian</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-500 text-center py-4 text-xs border-t border-slate-800">
+        &copy; 2026 Puskesmas Wanareja 2. Penilaian Kinerja Puskesmas (PKP) Valid.
+    </footer>
+
+    <script>
+        // SELURUH INDIKATOR ASLI DARI FILE EXCEL SENSUS KLASTER 2, 3, DAN 4 ANDA
+        const indikatorPKP = {
+            klaster1: [
+                "Capaian Perencanaan Puskesmas (RUK & RPK)",
+                "Manajemen Sumber Daya Manusia (SDM) Puskesmas",
+                "Manajemen Keuangan & Realisasi Dana BOK",
+                "Manajemen Data & Sistem Informasi Kesehatan",
+                "Indeks Kepuasan Masyarakat (IKM) Puskesmas"
+            ],
+            klaster2: [
+                "Cakupan ANC TM 1 USG", "Cakupan K4", "Cakupan ANC TM III USG", "Cakupan K6", 
+                "Persentase Ibu hamil dengan Anemia", "Ibu hamil yang mendapatkan 90 tablet tambah darah (TTD)", 
+                "Cakupan Ibu bersalin yang mendapatkan pelayanan sesuai standar ( PF )", 
+                "Cakupan Ibu Nifas yang mendapatkan pelayanan sesuai standar ( KF4)", 
+                "Cakupan Ibu Hamil yang memiliki status imunisasi T2+", 
+                "Persentase Ibu Hamil Kurang Energi Kronis (KEK) yang mendapatkan penanganan (Pemberian PMT).", 
+                "Ibu hamil dengan Anemia sedang dan berat yang dirujuk ke FKRTL", 
+                "Cakupan Bayi Baru Lahir mendapat Inisiasi Menyusu Dini (IMD)", 
+                "Presentasi Bayi dengan BBLR yang mendapatkan BUKU KIA Bayi kecil", 
+                "Cakupan Neonatus Komplikasi yang Ditangani", 
+                "Presentase bayi baru lahir yang mendapat pelayanan lengkap(KN Lengkap)", 
+                "Persentase Bayi Baru Lahir yang Mendapatkan Pelayanan Skrinning Hipotiroid Kongenital (SHK)", 
+                "Persentase Bayi Baru Lahir yang dilakukan Mendapatkan Skrining Penyakit Jantung Bawaan Kritis", 
+                "Cakupan Kunjungan Bayi", "Cakupan Pelayanan Anak Balita", 
+                "Cakupan Balita Yang Dipantau Pertumbuhan dan Perkembangannya", 
+                "Bayi usia kurang dari 6 bulan mendapatkan ASI eksklusif", 
+                "Prevalensi balita stunting (pendek dan sangat pendek)", 
+                "Prevalensi balita wasting (gizi kurang dan gizi buruk)", 
+                "Cakupan balita dipantau pertumbuhan dan dientry di ePPGBM", 
+                "Cakupan Anak Pra Sekolah yang dilayani SDIDTK minimal 2 x setahun", 
+                "Cakupan Balita Sakit Dilayani MTBS", 
+                "Persentase balita gizi buruk mendapatkan pelayanan tata laksana gizi buruk", 
+                "Cakupan bayi 0-11 bulan yang mendapat Imunisasi Dasar Lengkap (IDL)", 
+                "Cakupan anak usia 12-24 bulan yang mendapat imunisasi lanjutan baduta lengkap (IBL)", 
+                "Cakupan anak yang mendapatkan imunisasi lanjutan lengkap di usia sekolah dasar (ISL)", 
+                "Cakupan pemeriksaan kesehatan pada usia pendidikan dasar di sekolah atau di luar sekolah", 
+                "Puskesmas melakukan pembinaan UKSM 4X dalam 1 tahun pada satuan pendidikan", 
+                "Persentase remaja putri mendapat TTD", "Persentase remaja putri yang diskrining anemia", 
+                "Persentase remaja putri anemia", "Persentase remaja putri anemia yang mendapat tatalaksana"
+            ],
+            klaster3: [
+                "Persentase orang usia 15 – 59 tahun mendapatkan skrining kesehatan sesuai standar", 
+                "Pembinaan kesehatan kerja yang dilakukan puskesmas pada kelompok kerja.", 
+                "Persentase penderita hipertensi yang mendapatkan pelayanan kesehatan sesuai standar", 
+                "Persentase Penderita Diabetes Mellitus yang mendapatkan pelayanan kesehatan sesuai standard", 
+                "Persentase orang dengan gangguan jiwa berat yang mendapatkan pelayanan kesehatan jiwa sesuai standar", 
+                "Cakupan puskesmas yang melaksanakan UBM", "Presentase WUS yang mendapatkan pelayanan IVA Test dan HPVDNA", 
+                "Puskesmas melakukan K3 Internal", "Pos UKK yang terbentuk", "Puskesmas melakukan kesehatan olah raga", 
+                "Cakupan Kunjungan Penduduk baru Rawat jalan", "Cakupan rujukan Non Spesialistik", 
+                "Cakupan Posyandu Aktif", "Cakupan Lansia umur >60 tahun yang di screening", 
+                "Cakupan Home care Lansia", "Cakupan Perawatan Jangka Panjang Bagi Lansia", 
+                "Persentase Usia Lanjut > 60 tahun yang mendapatkan pelayanan sesuai standar"
+            ],
+            klaster4: [
+                "Persentase Orang terduga TBC mendapatkan pelayanan TBC sesuai standar Kesenjangan", 
+                "Angka keberhasilan pengobatan TB paru semua kasus yang sensitif obat", "Angka bebas jentik (ABJ)", 
+                "Pelayanan kesehatan orang dengan risiko terinfeksi HIV", "Seluruh kasus GHPR ditangani sesuai standar", 
+                "Persentase penderita diare balita yang ditangani sesuai standar dalam 1 thn", 
+                "Persentase kasus pneumonia pada balita yang ditangani sesuai standar", 
+                "Proporsi cacat tingkat II diantara penderita baru", 
+                "DDHB (pemeriksaan 3E) pada ibu hamil dan pemantuan bayi dari ibu yang hepatitis B", 
+                "Jumlah pelaporan kasus suspek atau probable leptospirosis", 
+                "Persentase kasus KLB/Penyakit potensi KLB yang dilakukan penyelidikan epidemiologi < 24 jam", 
+                "Penemuan suspek rubela", "Penemuan kasus AFP (lumpuh layuh akut) pada anak < 15 tahun", 
+                "Cakupan kelengkapan Unit pelapor pada pelaporan mingguan SKDR", 
+                "Cakupan ketepatan Unit pelapor pada pelaporan mingguan SKDR", 
+                "Cakupan ketepatan Unit pelapor memunculkan alert pada pelaporan mingguan SKDR", 
+                "Cakupan Pemeriksaan Kesehatan Haji", "Cakupan Kelengkapan Data Siskohatkes", 
+                "TFU Prioritas yang dibina dan diawasi", "TPP yang dibina dan diawasi", "Desa atau kelurahan STBM", 
+                "Cakupan Industri rumah tangga pangan (IRTP) yang memenuhi ketentuan", 
+                "Cakupan Tempat Pengelolaan Pangan (TPP) yang memenuhi syarat"
+            ],
+            klaster5: [
+                "Ketersediaan Stok Obat Utama & Esensial",
+                "Kesesuaian Pelayanan Farmasi dengan Standar Resep",
+                "Pelayanan Pemeriksaan Laboratorium Sesuai Standar",
+                "Cakupan Pelayanan Kegawatdaruratan (UGD) Respon Cepat"
+            ]
+        };
+
+        const bgColors = { klaster1: "bg-blue-600", klaster2: "bg-pink-600", klaster3: "bg-purple-600", klaster4: "bg-red-600", klaster5: "bg-amber-600" };
+        const namaKlasterText = { klaster1: "Klaster 1 - Manajemen", klaster2: "Klaster 2 - KIA & Gizi", klaster3: "Klaster 3 - Usia Dewasa & Lansia", klaster4: "Klaster 4 - P2M (Penyakit)", klaster5: "Klaster 5 - Penunjang Klinik" };
+
+        function perbaruiStatusDashboard() {
+            ['klaster1', 'klaster2', 'klaster3', 'klaster4', 'klaster5'].forEach((k) => {
+                let savedData = localStorage.getItem('pkp_saved_' + k);
+                let textElemen = document.getElementById('val-preview-' + k);
+                if (savedData === 'true') {
+                    textElemen.innerText = "Sudah Terisi ✓";
+                    textElemen.className = "font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded";
+                } else {
+                    textElemen.innerText = "Belum Diinput";
+                    textElemen.className = "font-semibold text-slate-400";
+                }
+            });
+        }
+
+        function pindahHalaman(klasterKey) {
+            document.getElementById('current-klaster-key').value = klasterKey;
+            document.getElementById('form-header-bg').className = p-6 text-white ${bgColors[klasterKey]};
+            document.getElementById('form-title').innerText = "Master PKP: " + namaKlasterText[klasterKey];
+            
+            let container = document.getElementById('list-input-indikator');
+            container.innerHTML = '';
+            
+            indikatorPKP[klasterKey].forEach((ind, index) => {
+                let idInput = input-${klasterKey}-${index};
+                let nilaiSkg = localStorage.getItem(idInput) || "";
+                
+                container.innerHTML += `
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-2 shadow-sm">
+                        <span class="text-xs font-bold text-slate-700 md:w-3/4 leading-relaxed">${index + 1}. ${ind}</span>
+                        <div class="relative md:w-1/4 flex items-center">
+                            <input type="number" id="${idInput}" value="${nilaiSkg}" min="0" max="100" placeholder="0" class="w-full text-right pr-8 pl-2 py-1 rounded-lg border border-slate-300 focus:border-emerald-500 outline-none font-bold text-xs">
+                            <span class="absolute right-3 text-xs font-bold text-slate-400">%</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('halaman-dasbor').style.display = 'none';
+            document.getElementById('halaman-form').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function kembaliKeDasbor() {
+            document.getElementById('halaman-form').style.display = 'none';
+            document.getElementById('halaman-dasbor').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function simpanDataForm() {
+            let klasterKey = document.getElementById('current-klaster-key').value;
+            indikatorPKP[klasterKey].forEach((ind, index) => {
+                let idInput = input-${klasterKey}-${index};
+                let value = document.getElementById(idInput).value;
+                localStorage.setItem(idInput, value);
+            });
+            localStorage.setItem('pkp_saved_' + klasterKey, 'true');
+            alert('Hebat! Seluruh data indikator ' + namaKlasterText[klasterKey] + ' berhasil disimpan.');
+            perbaruiStatusDashboard();
+            kembaliKeDasbor();
+        }
+
+        window.onload = function() {
+            perbaruiStatusDashboard();
+        };
+    </script>
+</body>
+</html>
