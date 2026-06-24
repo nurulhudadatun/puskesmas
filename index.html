@@ -9,7 +9,6 @@
 </head>
 <body class="bg-slate-50 font-sans min-h-screen flex flex-col">
 
-    <!-- Header Utama -->
     <header class="bg-emerald-600 text-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
@@ -27,19 +26,15 @@
         </div>
     </header>
 
-    <!-- Konten Utama -->
     <main class="container mx-auto px-4 py-8 flex-grow">
         
-        <!-- DASHBOARD UTAMA -->
         <div id="halaman-dasbor" class="block space-y-6">
             <div class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white shadow-md">
                 <h2 class="text-2xl font-bold">Selamat Datang di Portal Input PKP</h2>
                 <p class="text-emerald-100 text-sm mt-1">Silakan pilih klaster di bawah ini untuk mengisi seluruh indikator kinerja resmi sesuai target tahunan.</p>
             </div>
 
-            <!-- Grid Klaster -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- KLASTER 1 -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
                     <div class="p-5 border-b border-slate-50 bg-blue-50/50">
                         <span class="text-xs font-bold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-md">Klaster 1</span>
@@ -51,7 +46,6 @@
                     </div>
                 </div>
 
-                <!-- KLASTER 2 -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
                     <div class="p-5 border-b border-slate-50 bg-pink-50/50">
                         <span class="text-xs font-bold text-pink-700 bg-pink-100 px-2.5 py-1 rounded-md">Klaster 2</span>
@@ -63,7 +57,6 @@
                     </div>
                 </div>
 
-                <!-- KLASTER 3 -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
                     <div class="p-5 border-b border-slate-50 bg-purple-50/50">
                         <span class="text-xs font-bold text-purple-700 bg-purple-100 px-2.5 py-1 rounded-md">Klaster 3</span>
@@ -75,7 +68,6 @@
                     </div>
                 </div>
 
-                <!-- KLASTER 4 -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
                     <div class="p-5 border-b border-slate-50 bg-red-50/50">
                         <span class="text-xs font-bold text-red-700 bg-red-100 px-2.5 py-1 rounded-md">Klaster 4</span>
@@ -87,7 +79,6 @@
                     </div>
                 </div>
 
-                <!-- KLASTER 5 -->
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition">
                     <div class="p-5 border-b border-slate-50 bg-amber-50/50">
                         <span class="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-md">Klaster 5</span>
@@ -101,7 +92,6 @@
             </div>
         </div>
 
-        <!-- FORM INPUT BERJENJANG -->
         <div id="halaman-form" class="hidden">
             <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden">
                 <div id="form-header-bg" class="p-6 text-white">
@@ -111,8 +101,7 @@
                 <div class="p-6">
                     <input type="hidden" id="current-klaster-key">
                     <div id="list-input-indikator" class="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
-                        <!-- Indikator PKP di-render otomatis via JavaScript -->
-                    </div>
+                        </div>
                     
                     <div class="flex space-x-3 mt-6 border-t pt-4">
                         <button type="button" onclick="kembaliKeDasbor()" class="w-1/3 bg-slate-100 hover:bg-slate-200 py-2.5 rounded-xl text-sm font-semibold border transition">Kembali</button>
@@ -129,7 +118,6 @@
     </footer>
 
     <script>
-        // SELURUH INDIKATOR ASLI DARI FILE EXCEL SENSUS KLASTER 2, 3, DAN 4 ANDA
         const indikatorPKP = {
             klaster1: [
                 "Capaian Perencanaan Puskesmas (RUK & RPK)",
@@ -216,12 +204,14 @@
             ['klaster1', 'klaster2', 'klaster3', 'klaster4', 'klaster5'].forEach((k) => {
                 let savedData = localStorage.getItem('pkp_saved_' + k);
                 let textElemen = document.getElementById('val-preview-' + k);
-                if (savedData === 'true') {
-                    textElemen.innerText = "Sudah Terisi ✓";
-                    textElemen.className = "font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded";
-                } else {
-                    textElemen.innerText = "Belum Diinput";
-                    textElemen.className = "font-semibold text-slate-400";
+                if (textElemen) {
+                    if (savedData === 'true') {
+                        textElemen.innerText = "Sudah Terisi ✓";
+                        textElemen.className = "font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded";
+                    } else {
+                        textElemen.innerText = "Belum Diinput";
+                        textElemen.className = "font-semibold text-slate-400";
+                    }
                 }
             });
         }
@@ -234,20 +224,22 @@
             let container = document.getElementById('list-input-indikator');
             container.innerHTML = '';
             
-            indikatorPKP[klasterKey].forEach((ind, index) => {
-                let idInput = input-${klasterKey}-${index};
-                let nilaiSkg = localStorage.getItem(idInput) || "";
-                
-                container.innerHTML += `
-                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-2 shadow-sm">
-                        <span class="text-xs font-bold text-slate-700 md:w-3/4 leading-relaxed">${index + 1}. ${ind}</span>
-                        <div class="relative md:w-1/4 flex items-center">
-                            <input type="number" id="${idInput}" value="${nilaiSkg}" min="0" max="100" placeholder="0" class="w-full text-right pr-8 pl-2 py-1 rounded-lg border border-slate-300 focus:border-emerald-500 outline-none font-bold text-xs">
-                            <span class="absolute right-3 text-xs font-bold text-slate-400">%</span>
+            if (indikatorPKP[klasterKey]) {
+                indikatorPKP[klasterKey].forEach((ind, index) => {
+                    let idInput = input-${klasterKey}-${index};
+                    let nilaiSkg = localStorage.getItem(idInput) || "";
+                    
+                    container.innerHTML += `
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center justify-between gap-2 shadow-sm">
+                            <span class="text-xs font-bold text-slate-700 md:w-3/4 leading-relaxed">${index + 1}. ${ind}</span>
+                            <div class="relative md:w-1/4 flex items-center">
+                                <input type="number" id="${idInput}" value="${nilaiSkg}" min="0" max="100" placeholder="0" class="w-full text-right pr-8 pl-2 py-1 rounded-lg border border-slate-300 focus:border-emerald-500 outline-none font-bold text-xs">
+                                <span class="absolute right-3 text-xs font-bold text-slate-400">%</span>
+                            </div>
                         </div>
-                    </div>
-                `;
-            });
+                    `;
+                });
+            }
             
             document.getElementById('halaman-dasbor').style.display = 'none';
             document.getElementById('halaman-form').style.display = 'block';
@@ -262,15 +254,17 @@
 
         function simpanDataForm() {
             let klasterKey = document.getElementById('current-klaster-key').value;
-            indikatorPKP[klasterKey].forEach((ind, index) => {
-                let idInput = input-${klasterKey}-${index};
-                let value = document.getElementById(idInput).value;
-                localStorage.setItem(idInput, value);
-            });
-            localStorage.setItem('pkp_saved_' + klasterKey, 'true');
-            alert('Hebat! Seluruh data indikator ' + namaKlasterText[klasterKey] + ' berhasil disimpan.');
-            perbaruiStatusDashboard();
-            kembaliKeDasbor();
+            if (indikatorPKP[klasterKey]) {
+                indikatorPKP[klasterKey].forEach((ind, index) => {
+                    let idInput = input-${klasterKey}-${index};
+                    let value = document.getElementById(idInput).value;
+                    localStorage.setItem(idInput, value);
+                });
+                localStorage.setItem('pkp_saved_' + klasterKey, 'true');
+                alert('Hebat! Seluruh data indikator ' + namaKlasterText[klasterKey] + ' berhasil disimpan.');
+                perbaruiStatusDashboard();
+                kembaliKeDasbor();
+            }
         }
 
         window.onload = function() {
